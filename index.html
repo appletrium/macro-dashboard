@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>매크로 인베스트먼트 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f0f3f7;
+    --bg2:       #ffffff;
+    --bg3:       #f7f9fb;
+    --bg4:       #e8ecf1;
+    --border:    #dde2ea;
+    --border2:   #c4ccd8;
+    --text1:     #0f1923;
+    --text2:     #3d4a5c;
+    --text3:     #8a95a3;
+    --green:     #0a7c54;
+    --green-bg:  #eaf6f1;
+    --green-bd:  #a8dcc8;
+    --red:       #c0232f;
+    --red-bg:    #fdf0f1;
+    --red-bd:    #f0b0b5;
+    --amber:     #a06208;
+    --amber-bg:  #fef7eb;
+    --amber-bd:  #f5d08a;
+    --blue:      #1455a4;
+    --blue-bg:   #edf3fc;
+    --blue-bd:   #99c0ee;
+    --purple:    #5a31b0;
+    --purple-bg: #f2eefb;
+    --purple-bd: #c4aff0;
+    --teal:      #09756a;
+    --teal-bg:   #e8f7f5;
+    --teal-bd:   #8fd4cc;
+    --mono:      'IBM Plex Mono', monospace;
+    --sans:      'IBM Plex Sans KR', sans-serif;
+  }
+
+  /* ── 라이트 테마 오버라이드 ─────────────── */
+  body { background: var(--bg); }
+  .card { box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .metric-cell { background: var(--bg3); border: 1px solid var(--border); }
+  .api-slot { background: var(--bg3); border: 1px dashed var(--border2); color: var(--text3); }
+  .api-dot  { background: var(--border2); animation: pulse 1.5s infinite; }
+  footer { background: var(--bg2); border-top: 1px solid var(--border); color: var(--text3); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text1);
+    min-height: 100vh;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── 헤더 ─────────────────────────────── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text1);
+    letter-spacing: .04em;
+  }
+  .logo span { color: var(--blue); }
+  .regime-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--red-bg);
+    border: 1px solid var(--red-bd);
+    color: var(--red);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{opacity:1} 50%{opacity:.6}
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .update-time {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text3);
+  }
+  .update-time span { color: var(--text2); }
+  .refresh-btn {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .refresh-btn:hover {
+    background: var(--bg4);
+    color: var(--text1);
+    border-color: var(--border2);
+  }
+
+  /* ── 그리드 레이아웃 ─────────────────── */
+  .dash {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 12px;
+    padding: 16px 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* ── 컬럼 ────────────────────────────── */
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .col-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 2px 0 6px;
+  }
+
+  /* ── 카드 ────────────────────────────── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: var(--border2); }
+  .card-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  /* ── 배지 ────────────────────────────── */
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    padding: 2px 7px;
+    border-radius: 4px;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .b-green  { background:var(--green-bg);  border:1px solid var(--green-bd);  color:var(--green);  }
+  .b-red    { background:var(--red-bg);    border:1px solid var(--red-bd);    color:var(--red);    }
+  .b-amber  { background:var(--amber-bg);  border:1px solid var(--amber-bd);  color:var(--amber);  }
+  .b-blue   { background:var(--blue-bg);   border:1px solid var(--blue-bd);   color:var(--blue);   }
+  .b-purple { background:var(--purple-bg); border:1px solid var(--purple-bd); color:var(--purple); }
+  .b-teal   { background:var(--teal-bg);   border:1px solid var(--teal-bd);   color:var(--teal);   }
+  .b-gray   { background:var(--bg4);       border:1px solid var(--border2);   color:var(--text2);  }
+
+  /* ── 유틸 ────────────────────────────── */
+  .up  { color: var(--green); }
+  .dn  { color: var(--red); }
+  .neu { color: var(--text2); }
+  .mono { font-family: var(--mono); }
+  .row-b { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; gap:6px; }
+  .row-b:last-child { margin-bottom:0; }
+  .row   { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+  .row:last-child { margin-bottom:0; }
+  .divider { border:none; border-top:1px solid var(--border); margin:8px 0; }
+  .lbl { font-size:11px; color:var(--text2); }
+  .val { font-size:11px; font-weight:500; font-family:var(--mono); color:var(--text1); }
+  .val-sm { font-size:10px; color:var(--text3); font-family:var(--mono); }
+  .dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  /* ── 바 트랙 ─────────────────────────── */
+  .bar-track { height:4px; background:var(--bg4); border-radius:3px; flex:1; overflow:hidden; }
+  .bar-fill  { height:100%; border-radius:3px; transition: width .6s ease; }
+
+  /* ── 레짐 패스 ───────────────────────── */
+  .regime-path { display:flex; align-items:center; gap:4px; flex-wrap:wrap; margin-bottom:8px; }
+  .rp-node { font-family:var(--mono); font-size:10px; font-weight:500; padding:3px 8px; border-radius:5px; }
+  .rp-arrow { font-size:10px; color:var(--text3); }
+
+  /* ── 스파크라인 ──────────────────────── */
+  .sparkline { width:100%; height:30px; margin-top:6px; }
+
+  /* ── 확률 행 ─────────────────────────── */
+  .prob-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+  .prob-row:last-child { margin-bottom:0; }
+  .prob-lbl { font-size:11px; color:var(--text2); width:40px; flex-shrink:0; }
+  .prob-val { font-family:var(--mono); font-size:11px; font-weight:500; width:32px; text-align:right; flex-shrink:0; }
+
+  /* ── 배분 행 ─────────────────────────── */
+  .alloc-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+  .alloc-row:last-child { margin-bottom:0; }
+  .alloc-name { font-size:11px; color:var(--text2); width:78px; flex-shrink:0; }
+  .alloc-pct  { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--text1); width:28px; text-align:right; flex-shrink:0; }
+  .alloc-chg  { font-family:var(--mono); font-size:10px; width:28px; text-align:right; flex-shrink:0; }
+
+  /* ── 트레이드 행 ─────────────────────── */
+  .trade-row { display:flex; align-items:flex-start; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); gap:6px; }
+  .trade-row:last-child { border-bottom:none; padding-bottom:0; }
+  .trade-name { font-size:12px; font-weight:500; color:var(--text1); font-family:var(--mono); }
+  .trade-sub  { font-size:10px; color:var(--text3); margin-top:1px; }
+
+  /* ── 후보 행 ─────────────────────────── */
+  .cand-row { display:flex; align-items:center; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border); }
+  .cand-row:last-child { border-bottom:none; }
+  .ticker { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text1); }
+  .sector { font-size:10px; color:var(--text3); margin-top:1px; }
+  .score-bar { display:flex; gap:2px; justify-content:flex-end; margin-bottom:3px; }
+  .pip { width:6px; height:13px; border-radius:2px; background:var(--bg4); }
+  .pip.g { background:var(--green); }
+  .pip.r { background:var(--red); }
+  .pip.a { background:var(--amber); }
+
+  /* ── 트리거 행 ───────────────────────── */
+  .trigger-row { display:flex; align-items:flex-start; gap:8px; padding:6px 0; border-bottom:1px solid var(--border); }
+  .trigger-row:last-child { border-bottom:none; padding-bottom:0; }
+  .t-icon { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:600; flex-shrink:0; margin-top:1px; }
+  .t-fire  { background:var(--red-bg);   color:var(--red);   border:1px solid var(--red-bd); }
+  .t-watch { background:var(--amber-bg); color:var(--amber); border:1px solid var(--amber-bd); }
+  .t-ok    { background:var(--green-bg); color:var(--green); border:1px solid var(--green-bd); }
+  .t-name  { font-size:11px; font-weight:500; color:var(--text1); font-family:var(--mono); }
+  .t-sub   { font-size:10px; color:var(--text3); margin-top:1px; }
+
+  /* ── 리밸런싱 행 ─────────────────────── */
+  .rebal-row { display:flex; align-items:center; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border); }
+  .rebal-row:last-child { border-bottom:none; }
+  .rebal-name { font-size:12px; font-weight:500; font-family:var(--mono); color:var(--text1); }
+  .rebal-sub  { font-size:10px; color:var(--text3); margin-top:1px; }
+  .a-buy    { background:var(--green-bg);  border:1px solid var(--green-bd);  color:var(--green);  font-family:var(--mono); font-size:9px; padding:2px 7px; border-radius:4px; }
+  .a-sell   { background:var(--red-bg);    border:1px solid var(--red-bd);    color:var(--red);    font-family:var(--mono); font-size:9px; padding:2px 7px; border-radius:4px; }
+  .a-trim   { background:var(--amber-bg);  border:1px solid var(--amber-bd);  color:var(--amber);  font-family:var(--mono); font-size:9px; padding:2px 7px; border-radius:4px; }
+  .a-hedge  { background:var(--purple-bg); border:1px solid var(--purple-bd); color:var(--purple); font-family:var(--mono); font-size:9px; padding:2px 7px; border-radius:4px; }
+
+  /* ── 성과 메트릭 ─────────────────────── */
+  .metric-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .metric-cell { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:8px 10px; }
+  .metric-num  { font-family:var(--mono); font-size:18px; font-weight:500; }
+  .metric-lbl  { font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--text3); margin-top:2px; font-family:var(--mono); }
+
+  /* ── 시나리오 정확도 ─────────────────── */
+  .acc-row { display:flex; align-items:center; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--border); }
+  .acc-row:last-child { border-bottom:none; }
+  .acc-name { font-size:11px; font-weight:500; color:var(--text1); }
+  .acc-sub  { font-size:10px; color:var(--text3); margin-top:1px; }
+
+  /* ── API 플레이스홀더 ─────────────────── */
+  .api-slot {
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg3); border:1px dashed var(--border2);
+    border-radius:8px; padding:10px;
+    font-family:var(--mono); font-size:10px; color:var(--text3);
+    gap:6px; text-align:center;
+  }
+  .api-dot { width:6px; height:6px; border-radius:50%; background:var(--text3); animation:pulse 1.5s infinite; }
+
+  /* ── 면책 조항 ────────────────────────── */
+  footer {
+    text-align:center;
+    padding:16px 20px;
+    font-size:10px;
+    color:var(--text3);
+    border-top:1px solid var(--border);
+    line-height:1.7;
+  }
+
+  /* ── 반응형 ──────────────────────────── */
+  @media(max-width: 1100px) {
+    .dash { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media(max-width: 640px) {
+    .dash { grid-template-columns: 1fr; padding:10px 12px; gap:10px; }
+    header { padding:10px 12px; }
+    .header-right .refresh-btn { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── 헤더 ──────────────────────────────────────────── -->
+<header>
+  <div class="header-left">
+    <div class="logo"><span>▲</span> MACRO<span>.</span>BRAIN</div>
+    <div class="regime-pill">스태그플레이션 위험 ↑</div>
+  </div>
+  <div class="header-right">
+    <div class="update-time">마지막 업데이트 <span id="last-update">—</span></div>
+    <button class="refresh-btn" onclick="refreshTime()">↺ 새로고침</button>
+  </div>
+</header>
+
+<!-- ── 대시보드 그리드 ────────────────────────────────── -->
+<div class="dash">
+
+  <!-- ====== 1열: 매크로 분석 ====== -->
+  <div class="col">
+    <div class="col-title">매크로 분석</div>
+
+    <!-- 시장 국면 -->
+    <div class="card">
+      <div class="card-label">시장 국면 경로</div>
+      <div class="regime-path">
+        <span class="rp-node b-gray">골디락스</span>
+        <span class="rp-arrow">→</span>
+        <span class="rp-node b-amber">후기 사이클</span>
+        <span class="rp-arrow">→</span>
+        <span class="rp-node b-red" style="border-width:1.5px">스태그플레이션</span>
+      </div>
+      <div class="row">
+        <div class="dot" style="background:var(--red)"></div>
+        <span class="lbl">현재: <span class="dn" style="font-weight:500">스태그플레이션 위험 상승</span></span>
+      </div>
+      <!-- API 슬롯: 실시간 레짐 지수 차트 -->
+      <div class="api-slot" style="margin-top:8px;height:44px" id="slot-regime-chart">
+        <div class="api-dot"></div>
+        <span>[ API ] 레짐 지수 시계열 데이터</span>
+      </div>
+      <div class="val-sm" style="text-align:right;margin-top:4px">스태그플레이션 지수 ↑ 상승 추세</div>
+    </div>
+
+    <!-- 시나리오 확률 -->
+    <div class="card">
+      <div class="card-label">시나리오 확률</div>
+      <div class="prob-row">
+        <span class="prob-lbl" style="color:var(--green)">기본</span>
+        <div class="bar-track"><div class="bar-fill" style="width:48%;background:var(--green)"></div></div>
+        <span class="prob-val up">48%</span>
+      </div>
+      <div class="prob-row">
+        <span class="prob-lbl" style="color:var(--red)">약세</span>
+        <div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--red)"></div></div>
+        <span class="prob-val dn">35%</span>
+      </div>
+      <div class="prob-row">
+        <span class="prob-lbl" style="color:var(--blue)">강세</span>
+        <div class="bar-track"><div class="bar-fill" style="width:17%;background:var(--blue)"></div></div>
+        <span class="prob-val" style="color:var(--blue)">17%</span>
+      </div>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="dot" style="background:var(--red)"></div>
+        <span class="val-sm">약세 확률 전월 대비 <span class="dn">+8%p</span> 상승</span>
+      </div>
+    </div>
+
+    <!-- 유동성 & 스트레스 -->
+    <div class="card">
+      <div class="card-label">유동성 &amp; 스트레스</div>
+      <div class="row-b">
+        <span class="lbl">글로벌 유동성</span>
+        <div style="display:flex;align-items:center;gap:5px"><span class="badge b-amber">긴축 중</span><span class="val dn">−2.1σ</span></div>
+      </div>
+      <div class="row-b">
+        <span class="lbl">신용 스프레드 (HY)</span>
+        <div style="display:flex;align-items:center;gap:5px"><span class="badge b-red">확대</span><span class="val dn">+42bp</span></div>
+      </div>
+      <div class="row-b">
+        <span class="lbl">VIX 공포지수</span>
+        <div style="display:flex;align-items:center;gap:5px"><span class="badge b-amber">높음</span><span class="val dn">28.4</span></div>
+      </div>
+      <div class="row-b">
+        <span class="lbl">달러 인덱스 (DXY)</span>
+        <div style="display:flex;align-items:center;gap:5px"><span class="badge b-red">강세</span><span class="val dn">+1.3%</span></div>
+      </div>
+      <div class="row-b">
+        <span class="lbl">연준 대차대조표</span>
+        <div style="display:flex;align-items:center;gap:5px"><span class="badge b-gray">QT 진행</span><span class="val neu">−$85B</span></div>
+      </div>
+      <!-- API 슬롯 -->
+      <div class="api-slot" style="margin-top:8px" id="slot-liquidity">
+        <div class="api-dot"></div>
+        <span>[ API ] 실시간 유동성 지수 연동</span>
+      </div>
+    </div>
+
+    <!-- 핵심 시나리오 요약 -->
+    <div class="card" style="background:var(--bg3);border-color:var(--border2)">
+      <div class="card-label">핵심 시나리오 요약</div>
+      <div style="font-size:12px;line-height:1.65;color:var(--text1)">
+        인플레이션 고착 + 성장 둔화 → 실질금리 압박 심화.<br>
+        위험자산 축소, 원자재·단기채로 로테이션 필요.
+      </div>
+    </div>
+  </div><!-- /col1 -->
+
+
+  <!-- ====== 2열: 전략 ====== -->
+  <div class="col">
+    <div class="col-title">전략</div>
+
+    <!-- 자산 배분 -->
+    <div class="card">
+      <div class="card-label">자산 배분</div>
+      <div class="alloc-row">
+        <span class="alloc-name">주식</span>
+        <div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--blue)"></div></div>
+        <span class="alloc-pct">38%</span>
+        <span class="alloc-chg dn">−7%</span>
+      </div>
+      <div class="alloc-row">
+        <span class="alloc-name">채권 (단기)</span>
+        <div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--green)"></div></div>
+        <span class="alloc-pct">22%</span>
+        <span class="alloc-chg up">+5%</span>
+      </div>
+      <div class="alloc-row">
+        <span class="alloc-name">원자재</span>
+        <div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--amber)"></div></div>
+        <span class="alloc-pct">18%</span>
+        <span class="alloc-chg up">+6%</span>
+      </div>
+      <div class="alloc-row">
+        <span class="alloc-name">현금 / 단기국채</span>
+        <div class="bar-track"><div class="bar-fill" style="width:14%;background:#888780"></div></div>
+        <span class="alloc-pct">14%</span>
+        <span class="alloc-chg up">+3%</span>
+      </div>
+      <div class="alloc-row">
+        <span class="alloc-name">대안 / 헤지</span>
+        <div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--purple)"></div></div>
+        <span class="alloc-pct">8%</span>
+        <span class="alloc-chg up">+2%</span>
+      </div>
+    </div>
+
+    <!-- 트레이드 아이디어 -->
+    <div class="card">
+      <div class="card-label">트레이드 아이디어</div>
+      <div class="trade-row">
+        <div>
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">
+            <span class="badge b-green">매수</span>
+            <span class="trade-name">XLE — 에너지 ETF</span>
+          </div>
+          <div class="trade-sub">원자재 상승 · 공급 규율 유지</div>
+        </div>
+        <span class="badge b-green">확신 높음</span>
+      </div>
+      <div class="trade-row">
+        <div>
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">
+            <span class="badge b-green">매수</span>
+            <span class="trade-name">GLD — 금</span>
+          </div>
+          <div class="trade-sub">스태그플레이션 헤지 · 중앙은행 매수</div>
+        </div>
+        <span class="badge b-green">확신 높음</span>
+      </div>
+      <div class="trade-row">
+        <div>
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">
+            <span class="badge b-red">공매도</span>
+            <span class="trade-name">QQQ — 나스닥</span>
+          </div>
+          <div class="trade-sub">듀레이션 리스크 · PER 압축</div>
+        </div>
+        <span class="badge b-amber">확신 중간</span>
+      </div>
+      <div class="trade-row">
+        <div>
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">
+            <span class="badge b-purple">헤지</span>
+            <span class="trade-name">SPTS — 20년물 숏</span>
+          </div>
+          <div class="trade-sub">금리 재조정 리스크 대비</div>
+        </div>
+        <span class="badge b-green">확신 높음</span>
+      </div>
+    </div>
+
+    <!-- 핵심 vs 전술 -->
+    <div class="card">
+      <div class="card-label">핵심 vs 전술 포지션</div>
+      <div class="row-b" style="margin-bottom:4px">
+        <span class="lbl">핵심 (전략적)</span>
+        <span class="val">65%</span>
+      </div>
+      <div class="bar-track" style="height:6px;margin-bottom:8px">
+        <div class="bar-fill" style="width:65%;background:var(--blue)"></div>
+      </div>
+      <div class="row-b" style="margin-bottom:4px">
+        <span class="lbl">전술 (액티브)</span>
+        <span class="val">35%</span>
+      </div>
+      <div class="bar-track" style="height:6px;margin-bottom:8px">
+        <div class="bar-fill" style="width:35%;background:var(--amber)"></div>
+      </div>
+      <div class="divider"></div>
+      <div class="row-b">
+        <span class="lbl">액티브 리스크 소진율</span>
+        <span class="val dn">72% <span class="val-sm">↑ 58%</span></span>
+      </div>
+      <div class="row-b">
+        <span class="lbl">포트폴리오 베타</span>
+        <span class="val">0.61</span>
+      </div>
+    </div>
+  </div><!-- /col2 -->
+
+
+  <!-- ====== 3열: 기업 분석 ====== -->
+  <div class="col">
+    <div class="col-title">기업 분석</div>
+
+    <!-- 매수 후보 -->
+    <div class="card">
+      <div class="card-label">매수 후보</div>
+      <div class="cand-row">
+        <div><div class="ticker">XOM</div><div class="sector">에너지 · 통합</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div></div>
+          <span class="badge b-green">9.2 / 10</span>
+        </div>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">CVX</div><div class="sector">에너지 · 통합</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip"></div></div>
+          <span class="badge b-green">8.6 / 10</span>
+        </div>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">NEM</div><div class="sector">소재 · 금광</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip"></div></div>
+          <span class="badge b-green">8.1 / 10</span>
+        </div>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">MPC</div><div class="sector">에너지 · 정유</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip g"></div><div class="pip g"></div><div class="pip g"></div><div class="pip"></div><div class="pip"></div></div>
+          <span class="badge b-teal">7.8 / 10</span>
+        </div>
+      </div>
+      <!-- API 슬롯 -->
+      <div class="api-slot" style="margin-top:8px" id="slot-long">
+        <div class="api-dot"></div>
+        <span>[ API ] 실시간 종목 스크리닝 연동</span>
+      </div>
+    </div>
+
+    <!-- 공매도 후보 -->
+    <div class="card">
+      <div class="card-label">공매도 후보</div>
+      <div class="cand-row">
+        <div><div class="ticker">ARKK</div><div class="sector">테크 혁신</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div></div>
+          <span class="badge b-red">−8.9</span>
+        </div>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">TSLA</div><div class="sector">경기소비재</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div><div class="pip"></div></div>
+          <span class="badge b-red">−7.4</span>
+        </div>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">NFLX</div><div class="sector">커뮤니케이션</div></div>
+        <div style="text-align:right">
+          <div class="score-bar"><div class="pip r"></div><div class="pip r"></div><div class="pip r"></div><div class="pip"></div><div class="pip"></div></div>
+          <span class="badge b-amber">−6.1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관찰 종목 -->
+    <div class="card">
+      <div class="card-label">관찰 종목 — 신호 대기</div>
+      <div class="cand-row">
+        <div><div class="ticker">FCX</div><div class="sector">구리 · 소재</div></div>
+        <span class="badge b-amber">대기: 중국 PMI</span>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">MS</div><div class="sector">금융 · IB</div></div>
+        <span class="badge b-blue">대기: 수익률 곡선</span>
+      </div>
+      <div class="cand-row">
+        <div><div class="ticker">DE</div><div class="sector">산업재 · 농업</div></div>
+        <span class="badge b-teal">대기: 식품 CPI</span>
+      </div>
+    </div>
+  </div><!-- /col3 -->
+
+
+  <!-- ====== 4열: 실행 & 추적 ====== -->
+  <div class="col">
+    <div class="col-title">실행 &amp; 추적</div>
+
+    <!-- 리밸런싱 실행 -->
+    <div class="card">
+      <div class="card-label">리밸런싱 실행</div>
+      <div class="rebal-row">
+        <div><div class="rebal-name">XLE 편입</div><div class="rebal-sub">+4% → 비중 8%</div></div>
+        <span class="a-buy">매수</span>
+      </div>
+      <div class="rebal-row">
+        <div><div class="rebal-name">GLD 편입</div><div class="rebal-sub">+3% → 비중 6%</div></div>
+        <span class="a-buy">매수</span>
+      </div>
+      <div class="rebal-row">
+        <div><div class="rebal-name">QQQ 축소</div><div class="rebal-sub">−5% → 비중 12%</div></div>
+        <span class="a-trim">일부매도</span>
+      </div>
+      <div class="rebal-row">
+        <div><div class="rebal-name">IEF 전량 매도</div><div class="rebal-sub">듀레이션 리스크 과다</div></div>
+        <span class="a-sell">매도</span>
+      </div>
+      <div class="rebal-row">
+        <div><div class="rebal-name">SPTS 헤지 개시</div><div class="rebal-sub">명목 2% 설정</div></div>
+        <span class="a-hedge">헤지</span>
+      </div>
+    </div>
+
+    <!-- 트리거 신호 -->
+    <div class="card">
+      <div class="card-label">트리거 신호</div>
+      <div class="trigger-row">
+        <div class="t-icon t-fire">!</div>
+        <div><div class="t-name">CPI 전년비 &gt; 4.2%</div><div class="t-sub">발동 — 최대 방어 모드로 전환</div></div>
+      </div>
+      <div class="trigger-row">
+        <div class="t-icon t-fire">!</div>
+        <div><div class="t-name">수익률 곡선 역전</div><div class="t-sub">발동 — 장기채 비중 축소</div></div>
+      </div>
+      <div class="trigger-row">
+        <div class="t-icon t-watch">~</div>
+        <div><div class="t-name">S&amp;P500 −15% 낙폭</div><div class="t-sub">모니터링 중 — 현재 −11.4%</div></div>
+      </div>
+      <div class="trigger-row">
+        <div class="t-icon t-ok">✓</div>
+        <div><div class="t-name">연준 피벗 신호</div><div class="t-sub">확인 — 아직 피벗 언급 없음</div></div>
+      </div>
+      <!-- API 슬롯 -->
+      <div class="api-slot" style="margin-top:8px" id="slot-triggers">
+        <div class="api-dot"></div>
+        <span>[ API ] 실시간 경제지표 트리거 연동</span>
+      </div>
+    </div>
+
+    <!-- 성과 지표 -->
+    <div class="card">
+      <div class="card-label">성과 지표</div>
+      <div class="metric-grid">
+        <div class="metric-cell">
+          <div class="metric-num up">+4.1%</div>
+          <div class="metric-lbl">월간 수익률</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-num dn">−2.3%</div>
+          <div class="metric-lbl">벤치마크 대비</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-num">1.24</div>
+          <div class="metric-lbl">샤프지수 (YTD)</div>
+        </div>
+        <div class="metric-cell">
+          <div class="metric-num dn">−8.7%</div>
+          <div class="metric-lbl">최대 낙폭</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="row-b">
+        <span class="lbl">트레이드 적중률</span>
+        <span class="val up">67%</span>
+      </div>
+      <div class="row-b">
+        <span class="lbl">손익비</span>
+        <span class="val">1.8×</span>
+      </div>
+    </div>
+
+    <!-- 시나리오 정확도 -->
+    <div class="card">
+      <div class="card-label">시나리오 정확도</div>
+      <div class="acc-row">
+        <div><div class="acc-name">스태그플레이션 전망</div><div class="acc-sub">6주 전 예측 · 진행 중</div></div>
+        <span class="badge b-green">✓ 적중</span>
+      </div>
+      <div class="acc-row">
+        <div><div class="acc-name">연착륙 기본 시나리오</div><div class="acc-sub">확률 하락 중</div></div>
+        <span class="badge b-amber">⚠ 약화</span>
+      </div>
+      <div class="acc-row">
+        <div><div class="acc-name">원자재 랠리 전망</div><div class="acc-sub">3주 전 예측 · +11%</div></div>
+        <span class="badge b-green">✓ 확인</span>
+      </div>
+      <div class="acc-row">
+        <div><div class="acc-name">기술주 반등 전망</div><div class="acc-sub">비중 부족으로 미스</div></div>
+        <span class="badge b-red">✗ 실패</span>
+      </div>
+    </div>
+  </div><!-- /col4 -->
+
+</div><!-- /dash -->
+
+<!-- ── 면책 조항 ───────────────────────────────────────── -->
+<footer>
+  본 대시보드는 투자 참고 목적의 정보 제공용이며, 투자 권유 또는 투자 자문이 아닙니다.<br>
+  투자 결정 및 그에 따른 손익은 전적으로 투자자 본인에게 귀속됩니다.<br>
+  과거 성과는 미래 수익을 보장하지 않습니다.
+</footer>
+
+<script>
+  // 마지막 업데이트 시간
+  function refreshTime() {
+    const now = new Date();
+    const formatted = now.toLocaleDateString('ko-KR', {
+      year: 'numeric', month: '2-digit', day: '2-digit'
+    }) + ' ' + now.toLocaleTimeString('ko-KR', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    document.getElementById('last-update').textContent = formatted;
+  }
+  refreshTime();
+
+  // ── API 슬롯 연동 가이드 ──────────────────────────────
+  // 아래 함수에 실제 API 호출 로직을 추가하세요.
+  // 예시: fetchRegimeData(), fetchLiquidityIndex(), fetchScreener()
+
+  /*
+  async function fetchRegimeData() {
+    const res = await fetch('https://your-api.com/regime');
+    const data = await res.json();
+    // document.getElementById('slot-regime-chart').innerHTML = renderChart(data);
+  }
+
+  async function fetchLiquidityIndex() {
+    const res = await fetch('https://your-api.com/liquidity');
+    const data = await res.json();
+    // 데이터 업데이트 로직
+  }
+
+  async function fetchScreener() {
+    const res = await fetch('https://your-api.com/screener');
+    const data = await res.json();
+    // document.getElementById('slot-long').innerHTML = renderCandidates(data.long);
+  }
+
+  async function fetchTriggers() {
+    const res = await fetch('https://your-api.com/triggers');
+    const data = await res.json();
+    // document.getElementById('slot-triggers').innerHTML = renderTriggers(data);
+  }
+
+  // 페이지 로드 시 자동 실행
+  fetchRegimeData();
+  fetchLiquidityIndex();
+  fetchScreener();
+  fetchTriggers();
+  */
+</script>
+</body>
+</html>
