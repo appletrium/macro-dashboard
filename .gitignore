@@ -1,0 +1,10 @@
+# 비밀키 — 절대 커밋 금지
+.env
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+
+# macOS / 로그
+.DS_Store
+logs/
