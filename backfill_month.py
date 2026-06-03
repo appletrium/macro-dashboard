@@ -10,13 +10,15 @@
 
 import json
 import datetime
+import sys
 from datetime import date
 
 import record
 import backfill as bf
 
-START = date(2026, 4, 27)
-END = date(2026, 5, 26)
+# 기간은 명령행 인자로 받음:  python3 backfill_month.py 2026-03-27 2026-04-24
+START = date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 else date(2026, 4, 27)
+END = date.fromisoformat(sys.argv[2]) if len(sys.argv) > 2 else date(2026, 5, 26)
 
 
 def load_yahoo_temp():

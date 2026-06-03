@@ -493,9 +493,8 @@ def build_dashboard(history):
     snaps_html, chips = "", ""
     for i, snap in enumerate(history):
         disp = "block" if i == last else "none"
-        rec = snap["recorded_at"].replace("T", " ")
         snaps_html += (f'<div class="snap" id="snap{i}" style="display:{disp}">'
-                       f'<div class="snapmeta">📅 {snap["date"]} · 기록 {rec} · 그날까지 {i+1}일치</div>'
+                       f'<div class="snapmeta">📅 {snap["date"]} <span class="snapsub">(미국 장 마감 종가 기준)</span></div>'
                        f'{render_sections(history[:i+1])}</div>')
     for i in range(last, -1, -1):   # 칩은 최신 → 과거 순
         cls = " active" if i == last else ""
@@ -548,13 +547,18 @@ def build_dashboard(history):
     letter-spacing: -0.3px; white-space: nowrap; }}
   .sec-nm {{ font-size: 9.5px; color: #c2c9d6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
   /* 날짜 네비게이션 */
-  .datenav {{ max-width: 1480px; margin: 0 auto 16px; display: flex; flex-wrap: wrap; gap: 4px; }}
+  .datenav {{ max-width: 1480px; margin: 0 auto 16px; display: flex; flex-wrap: nowrap;
+    gap: 4px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }}
+  .datenav::-webkit-scrollbar {{ height: 7px; }}
+  .datenav::-webkit-scrollbar-thumb {{ background: #2a3242; border-radius: 4px; }}
   .chip {{ background: #141925; border: 1px solid #232a3a; color: #9aa3b8; font-family: inherit;
-    font-size: 10.5px; padding: 3px 8px; border-radius: 6px; cursor: pointer; }}
+    font-size: 10.5px; padding: 3px 8px; border-radius: 6px; cursor: pointer;
+    flex-shrink: 0; white-space: nowrap; }}
   .chip:hover {{ border-color: #3a4660; color: #cdd4e2; }}
   .chip.mon {{ background: rgba(239,231,211,0.10); border-color: rgba(216,205,176,0.35); color: #d6c8a3; }}  /* 월요일 미색(투명도 90%) */
   .chip.active {{ background: #1d3a6b; border-color: #3b6db5; color: #dbe7ff; font-weight: 700; }}
   .snapmeta {{ max-width: 1480px; margin: 0 auto 16px; color: #8a93a6; font-size: 12px; font-weight: 600; }}
+  .snapsub {{ color: #565e72; font-size: 10.5px; font-weight: 400; }}
   footer {{ max-width: 1480px; margin: 6px auto 0; color: #565e72; font-size: 10.5px; line-height: 1.5; }}
 </style></head><body>
   <header>
