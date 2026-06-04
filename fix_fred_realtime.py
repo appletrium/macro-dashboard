@@ -23,7 +23,7 @@ def fetch_vintages(sid, key):
     realtime_start 를 과거로 주면 그 사이의 모든 발표(개정) 이력을 받습니다."""
     url = ("https://api.stlouisfed.org/fred/series/observations"
            f"?series_id={sid}&api_key={key}&file_type=json"
-           f"&observation_start=2025-10-01&realtime_start=2026-03-01")
+           f"&observation_start=2025-10-01&realtime_start=2026-02-01")
     for attempt in range(5):
         r = requests.get(url, timeout=20)
         if r.status_code == 429:

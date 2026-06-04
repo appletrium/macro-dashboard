@@ -53,7 +53,7 @@ INDICATORS = [
     {"key": "vix",     "name": "VIX 공포지수",    "category": "변동성",   "source": "fred",     "ticker": "VIXCLS",   "group": 1, "invert": True},
     {"key": "fng",     "name": "공포·탐욕 지수",    "category": "심리지표", "source": "cnn",      "ticker": "",         "group": 1},
     {"key": "dxy",     "name": "달러 인덱스",      "category": "환율",     "source": "stooq",    "ticker": "dx.f",     "group": 1},
-    {"key": "spread",  "name": "장단기 금리차(10Y-2Y)", "category": "경기신호", "source": "fred", "ticker": "T10Y2Y", "group": 1, "unit": "%p"},
+    {"key": "spread",  "name": "장단기 금리차(10Y-2Y)", "category": "경기신호", "source": "treasury", "ticker": "SPREAD", "group": 1, "unit": "%p"},
     {"key": "m2",      "name": "M2 통화량",        "category": "유동성",   "source": "fred",     "ticker": "M2SL",     "group": 1, "unit": "B"},
 
     # ── 2) 주요 자산 ───────────────────────────────────────────────────
@@ -67,11 +67,12 @@ INDICATORS = [
     {"key": "eth",     "name": "이더리움",        "category": "암호화폐", "source": "coinbase", "ticker": "ETH-USD",  "group": 2},
 
     # ── 3) 미국 매크로 경제지표 ────────────────────────────────────────
-    {"key": "us10y",   "name": "미국 10년물 금리", "category": "금리",     "source": "fred", "ticker": "DGS10",    "group": 3, "unit": "%"},
-    {"key": "us2y",    "name": "미국 2년물 금리",  "category": "금리",     "source": "fred", "ticker": "DGS2",     "group": 3, "unit": "%"},
+    {"key": "us10y",   "name": "미국 10년물 금리", "category": "금리",     "source": "treasury", "ticker": "10 Yr", "group": 3, "unit": "%"},
+    {"key": "us2y",    "name": "미국 2년물 금리",  "category": "금리",     "source": "treasury", "ticker": "2 Yr",  "group": 3, "unit": "%"},
     {"key": "cpi",     "name": "소비자물가(CPI)",  "category": "인플레이션", "source": "fred", "ticker": "CPIAUCSL", "group": 3},
     {"key": "unrate",  "name": "실업률",          "category": "고용",     "source": "fred", "ticker": "UNRATE",   "group": 3, "unit": "%", "invert": True},
     {"key": "fedfunds","name": "기준금리(Fed)",    "category": "금리",     "source": "fred", "ticker": "FEDFUNDS", "group": 3, "unit": "%"},
+    {"key": "sofr",    "name": "SOFR",            "category": "금리",     "source": "fred", "ticker": "SOFR",     "group": 3, "unit": "%"},
     {"key": "fedbs",   "name": "Fed Balance",     "category": "유동성",   "source": "fred", "ticker": "WALCL",    "group": 3, "unit": "B", "scale": 0.001},
     {"key": "rrp",     "name": "역레포(RRP)",      "category": "유동성",   "source": "fred", "ticker": "RRPONTSYD","group": 3, "unit": "B"},
 
@@ -193,6 +194,62 @@ def fetch_fred(ind, key):
             "obs_date": obs[0]["date"], "period": period_label(gap)}
 
 
+# 미국 국채금리(10Y·2Y·금리차)는 FRED 대신 '미국 재무부' 공식 일별 수익률곡선에서 받는다.
+# (FRED의 원천이며 발표가 1~2영업일 빠르고, API 키가 필요 없음)
+TREASURY_CSV = ("https://home.treasury.gov/resource-center/data-chart-center/interest-rates/"
+                "daily-treasury-rates.csv/{year}/all?type=daily_treasury_yield_curve"
+                "&field_tdr_date_value={year}&page&_format=csv")
+_TREASURY_CACHE = {}
+
+
+def treasury_series(year):
+    """재무부 일별 국채금리 → 정렬된 [(YYYY-MM-DD, {'2 Yr':v, '10 Yr':v}), ...] (키 불필요)."""
+    import csv as _csv
+    from io import StringIO as _SIO
+    if year in _TREASURY_CACHE:
+        return _TREASURY_CACHE[year]
+    r = SESSION.get(TREASURY_CSV.format(year=year),
+                    headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"},
+                    timeout=25)
+    r.raise_for_status()
+    rows = list(_csv.reader(_SIO(r.text)))
+    hdr = rows[0]
+    i2, i10 = hdr.index("2 Yr"), hdr.index("10 Yr")
+    out = []
+    for row in rows[1:]:
+        if not row or not row[0].strip():
+            continue
+        try:
+            mm, dd, yy = row[0].split("/")
+            out.append((f"{yy}-{mm}-{dd}", {"2 Yr": float(row[i2]), "10 Yr": float(row[i10])}))
+        except (ValueError, IndexError):
+            continue
+    out.sort()
+    _TREASURY_CACHE[year] = out
+    return out
+
+
+def treasury_value(row, ticker):
+    """재무부 행(dict)에서 지표 티커에 맞는 값. 'SPREAD' = 10Y - 2Y."""
+    if ticker == "10 Yr":
+        return row["10 Yr"]
+    if ticker == "2 Yr":
+        return row["2 Yr"]
+    if ticker == "SPREAD":
+        return round(row["10 Yr"] - row["2 Yr"], 2)
+    return None
+
+
+def fetch_treasury(ind):
+    """treasury 소스 지표(us10y/us2y/spread)의 최신값. 전일 대비는 collect()에서 계산."""
+    series = treasury_series(datetime.now().strftime("%Y"))
+    if not series:
+        return {"value": None, "change_pct": None, "note": "재무부 데이터 없음"}
+    d, row = series[-1]
+    return {"value": treasury_value(row, ind["ticker"]), "obs_date": d}
+
+
 def us_session_date(fallback):
     """파일 날짜 = '가장 최근에 마감된 미국 정규장 세션 날짜'.
     Stooq의 S&P500 종가가 어느 세션 것인지(Date 필드)를 그대로 사용한다.
@@ -209,8 +266,8 @@ def us_session_date(fallback):
 
 # 일간 FRED 지표(매일 종가가 존재) — 각 파일의 '세션 날짜' 관측값으로 맞춘다.
 # (CPI·M2처럼 가끔 발표되는 건 제외. 그쪽은 발표 시차 반영 방식을 유지.)
-DAILY_FRED = {"vix": "VIXCLS", "us10y": "DGS10", "us2y": "DGS2",
-              "spread": "T10Y2Y", "rrp": "RRPONTSYD"}
+# us10y·us2y·spread 는 재무부(treasury) 소스로 이전 → FRED 일간 보정 대상에서 제외.
+DAILY_FRED = {"vix": "VIXCLS", "rrp": "RRPONTSYD", "sofr": "SOFR"}
 
 
 def fred_obs_series(sid, key):
@@ -285,7 +342,8 @@ def collect():
         "recorded_at": datetime.now().isoformat(timespec="seconds"),
         "indicators": {},
     }
-    fetchers = {"stooq": fetch_stooq, "coinbase": fetch_coinbase, "cnn": fetch_cnn_fng}
+    fetchers = {"stooq": fetch_stooq, "coinbase": fetch_coinbase, "cnn": fetch_cnn_fng,
+                "treasury": fetch_treasury}
     prev_snap = load_previous_snapshot(today)   # 어제(또는 가장 최근) 기록
     # 시장 데이터(주가·코인·심리)는 내가 저장한 직전 기록과 비교하므로,
     # 그 기록이 며칠 전인지로 비교 기간 라벨을 정함(보통 '전일').
@@ -510,15 +568,15 @@ def build_dashboard(history):
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{ font-family: -apple-system, "Apple SD Gothic Neo", sans-serif;
     background: #0b0e14; color: #e6e9ef; padding: 18px 16px 16px 32px; }}
-  header {{ max-width: 1480px; margin: 0 auto 28px; display: flex;
+  header {{ max-width: 1480px; margin: 0 auto 12px; display: flex;
     align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; }}
   header h1 {{ font-size: 16px; letter-spacing: -0.3px; }}
   header .meta {{ color: #7d869c; font-size: 11.5px; }}
-  .grp {{ max-width: 1480px; margin: 0 auto 30px; }}
-  .grp-head {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }}
+  .grp {{ max-width: 1480px; margin: 0 auto 24px; }}
+  .grp-head {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 9px; }}
   .grp-head h2 {{ font-size: 13px; }}
   .grp-head p {{ color: #7d869c; font-size: 11px; }}
-  .grid {{ display: grid; gap: 7px; grid-template-columns: repeat(auto-fill, minmax(164px, 1fr)); }}
+  .grid {{ display: grid; gap: 6px 7px; grid-template-columns: repeat(auto-fill, minmax(164px, 1fr)); }}
   .card {{ background: #141925; border: 1px solid #232a3a; border-radius: 9px; padding: 9px 10px; }}
   .card-top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 4px; }}
   .cat {{ color: #6b7488; font-size: 10px; }}
@@ -532,11 +590,11 @@ def build_dashboard(history):
   .bad {{ color: #ff6b6b; }}
   .flat {{ color: #8a93a6; }}
   .pending {{ color: #c79a4b; font-size: 10.5px; font-weight: 500; }}
-  .trends {{ display: flex; justify-content: space-between; gap: 4px;
+  .trends {{ display: flex; justify-content: space-between; gap: 3px;
     margin-top: 7px; padding-top: 6px; border-top: 1px solid #232a3a; }}
   .mini {{ display: flex; flex-direction: column; gap: 1px; }}
   .mini span {{ color: #6b7488; font-size: 9.5px; }}
-  .mini b {{ font-size: 11px; font-weight: 600; }}
+  .mini b {{ font-size: 10px; font-weight: 600; white-space: nowrap; }}
   .spark svg {{ display: block; }}
   /* 섹터 — 한 줄, 등락폭 비례 너비 */
   .sec-row {{ display: flex; gap: 5px; align-items: stretch; }}
