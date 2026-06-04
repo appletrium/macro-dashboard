@@ -352,6 +352,18 @@
       "change_pct": -0.4,
       "period": "전일",
       "status": "ok"
+    },
+    "sofr": {
+      "name": "SOFR",
+      "category": "금리",
+      "group": 3,
+      "unit": "%",
+      "invert": null,
+      "value": 3.64,
+      "change_pct": -0.55,
+      "obs_date": "2026-04-28",
+      "period": "전일",
+      "status": "ok"
     }
   }
 }

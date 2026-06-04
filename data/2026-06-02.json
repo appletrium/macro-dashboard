@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 16.05,
-      "change_pct": 4.77,
-      "obs_date": "2026-06-01",
+      "value": 15.77,
+      "change_pct": -1.74,
+      "obs_date": "2026-06-02",
       "period": "전일",
       "status": "ok"
     },
@@ -154,9 +154,9 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": 4.47,
-      "change_pct": 0.45,
-      "obs_date": "2026-06-01",
+      "value": 4.46,
+      "change_pct": -0.22,
+      "obs_date": "2026-06-02",
       "period": "전일",
       "status": "ok"
     },
@@ -167,8 +167,8 @@
       "unit": "%",
       "invert": null,
       "value": 4.05,
-      "change_pct": 1.76,
-      "obs_date": "2026-06-01",
+      "change_pct": 0.0,
+      "obs_date": "2026-06-02",
       "period": "전일",
       "status": "ok"
     },
@@ -350,6 +350,18 @@
       "invert": null,
       "value": 113.57,
       "change_pct": -1.76,
+      "period": "전일",
+      "status": "ok"
+    },
+    "sofr": {
+      "name": "SOFR",
+      "category": "금리",
+      "group": 3,
+      "unit": "%",
+      "invert": null,
+      "value": 3.65,
+      "change_pct": 0.55,
+      "obs_date": "2026-06-01",
       "period": "전일",
       "status": "ok"
     }
