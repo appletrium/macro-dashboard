@@ -359,9 +359,9 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": 3.65,
-      "change_pct": 0.55,
-      "obs_date": "2026-06-01",
+      "value": 3.63,
+      "change_pct": -0.55,
+      "obs_date": "2026-06-02",
       "period": "전일",
       "status": "ok"
     }
