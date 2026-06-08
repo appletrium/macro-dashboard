@@ -52,17 +52,17 @@ INDICATORS = [
     # ── 1) 시장 심리 ───────────────────────────────────────────────────
     {"key": "vix",     "name": "VIX 공포지수",    "category": "변동성",   "source": "fred",     "ticker": "VIXCLS",   "group": 1, "invert": True},
     {"key": "fng",     "name": "공포·탐욕 지수",    "category": "심리지표", "source": "cnn",      "ticker": "",         "group": 1},
-    {"key": "dxy",     "name": "달러 인덱스",      "category": "환율",     "source": "stooq",    "ticker": "dx.f",     "group": 1},
+    {"key": "dxy",     "name": "달러 인덱스",      "category": "환율",     "source": "dxy",      "ticker": "",         "group": 1},
     {"key": "spread",  "name": "장단기 금리차(10Y-2Y)", "category": "경기신호", "source": "treasury", "ticker": "SPREAD", "group": 1, "unit": "%p"},
     {"key": "m2",      "name": "M2 통화량",        "category": "유동성",   "source": "fred",     "ticker": "M2SL",     "group": 1, "unit": "B"},
 
     # ── 2) 주요 자산 ───────────────────────────────────────────────────
-    {"key": "sp500",   "name": "S&P 500",        "category": "미국 증시", "source": "stooq",    "ticker": "^spx",     "group": 2},
-    {"key": "nasdaq",  "name": "나스닥",          "category": "미국 증시", "source": "stooq",    "ticker": "^ndq",     "group": 2},
-    {"key": "kospi",   "name": "코스피",          "category": "한국 증시", "source": "stooq",    "ticker": "^kospi",   "group": 2},
-    {"key": "gold",    "name": "금",              "category": "원자재",   "source": "stooq",    "ticker": "gc.f",     "group": 2},
-    {"key": "wti",     "name": "WTI 유가",        "category": "원자재",   "source": "stooq",    "ticker": "cl.f",     "group": 2},
-    {"key": "usdkrw",  "name": "달러/원 환율",     "category": "환율",     "source": "stooq",    "ticker": "usdkrw",   "group": 2},
+    {"key": "sp500",   "name": "S&P 500",        "category": "미국 증시", "source": "fred",       "ticker": "SP500",     "group": 2},
+    {"key": "nasdaq",  "name": "나스닥",          "category": "미국 증시", "source": "fred",       "ticker": "NASDAQCOM", "group": 2},
+    {"key": "kospi",   "name": "코스피",          "category": "한국 증시", "source": "none",       "ticker": "",          "group": 2},
+    {"key": "gold",    "name": "금",              "category": "원자재",   "source": "twelvedata", "ticker": "XAU/USD",   "group": 2},
+    {"key": "wti",     "name": "WTI 유가",        "category": "원자재",   "source": "fred",       "ticker": "DCOILWTICO","group": 2},
+    {"key": "usdkrw",  "name": "달러/원 환율",     "category": "환율",     "source": "twelvedata", "ticker": "USD/KRW",   "group": 2},
     {"key": "btc",     "name": "비트코인",        "category": "암호화폐", "source": "coinbase", "ticker": "BTC-USD",  "group": 2},
     {"key": "eth",     "name": "이더리움",        "category": "암호화폐", "source": "coinbase", "ticker": "ETH-USD",  "group": 2},
 
@@ -77,17 +77,17 @@ INDICATORS = [
     {"key": "rrp",     "name": "역레포(RRP)",      "category": "유동성",   "source": "fred", "ticker": "RRPONTSYD","group": 3, "unit": "B"},
 
     # ── 4) 미국 섹터 (S&P500 SPDR ETF 11종, 그날 상승률 순 히트맵) ──────
-    {"key": "sec_xlk", "name": "기술",        "category": "XLK", "source": "stooq", "ticker": "xlk.us",  "group": 4},
-    {"key": "sec_xlf", "name": "금융",        "category": "XLF", "source": "stooq", "ticker": "xlf.us",  "group": 4},
-    {"key": "sec_xlv", "name": "헬스케어",     "category": "XLV", "source": "stooq", "ticker": "xlv.us",  "group": 4},
-    {"key": "sec_xly", "name": "임의소비재",   "category": "XLY", "source": "stooq", "ticker": "xly.us",  "group": 4},
-    {"key": "sec_xlp", "name": "필수소비재",   "category": "XLP", "source": "stooq", "ticker": "xlp.us",  "group": 4},
-    {"key": "sec_xle", "name": "에너지",       "category": "XLE", "source": "stooq", "ticker": "xle.us",  "group": 4},
-    {"key": "sec_xli", "name": "산업재",       "category": "XLI", "source": "stooq", "ticker": "xli.us",  "group": 4},
-    {"key": "sec_xlb", "name": "소재",        "category": "XLB", "source": "stooq", "ticker": "xlb.us",  "group": 4},
-    {"key": "sec_xlu", "name": "유틸리티",     "category": "XLU", "source": "stooq", "ticker": "xlu.us",  "group": 4},
-    {"key": "sec_xlre","name": "리츠",        "category": "XLRE","source": "stooq", "ticker": "xlre.us", "group": 4},
-    {"key": "sec_xlc", "name": "커뮤니케이션",  "category": "XLC", "source": "stooq", "ticker": "xlc.us",  "group": 4},
+    {"key": "sec_xlk", "name": "기술",        "category": "XLK", "source": "twelvedata", "ticker": "XLK",  "group": 4},
+    {"key": "sec_xlf", "name": "금융",        "category": "XLF", "source": "twelvedata", "ticker": "XLF",  "group": 4},
+    {"key": "sec_xlv", "name": "헬스케어",     "category": "XLV", "source": "twelvedata", "ticker": "XLV",  "group": 4},
+    {"key": "sec_xly", "name": "임의소비재",   "category": "XLY", "source": "twelvedata", "ticker": "XLY",  "group": 4},
+    {"key": "sec_xlp", "name": "필수소비재",   "category": "XLP", "source": "twelvedata", "ticker": "XLP",  "group": 4},
+    {"key": "sec_xle", "name": "에너지",       "category": "XLE", "source": "twelvedata", "ticker": "XLE",  "group": 4},
+    {"key": "sec_xli", "name": "산업재",       "category": "XLI", "source": "twelvedata", "ticker": "XLI",  "group": 4},
+    {"key": "sec_xlb", "name": "소재",        "category": "XLB", "source": "twelvedata", "ticker": "XLB",  "group": 4},
+    {"key": "sec_xlu", "name": "유틸리티",     "category": "XLU", "source": "twelvedata", "ticker": "XLU",  "group": 4},
+    {"key": "sec_xlre","name": "리츠",        "category": "XLRE","source": "twelvedata", "ticker": "XLRE", "group": 4},
+    {"key": "sec_xlc", "name": "커뮤니케이션",  "category": "XLC", "source": "twelvedata", "ticker": "XLC",  "group": 4},
 ]
 
 STOOQ_URL = "https://stooq.com/q/l/?s={sym}&f=sd2t2c&h&e=csv"
@@ -250,24 +250,89 @@ def fetch_treasury(ind):
     return {"value": treasury_value(row, ind["ticker"]), "obs_date": d}
 
 
-def us_session_date(fallback):
-    """파일 날짜 = '가장 최근에 마감된 미국 정규장 세션 날짜'.
-    Stooq의 S&P500 종가가 어느 세션 것인지(Date 필드)를 그대로 사용한다.
-    (KST 8시 기록 시점엔 미국장이 새벽에 막 닫혔으므로 보통 직전 영업일)."""
+# ── Twelve Data (무료): gold(XAU/USD)·usdkrw(USD/KRW)·섹터ETF 11 + DXY 합성용 FX ──
+# 무료 플랜은 지수·원자재 미지원 → 지수·WTI는 FRED, 달러인덱스(ICE DXY)는 FX로 합성.
+TD_QUOTE_URL = "https://api.twelvedata.com/quote"
+DXY_FX = ["EUR/USD", "USD/JPY", "GBP/USD", "USD/CAD", "USD/SEK", "USD/CHF"]
+_TD_CACHE = {}
+
+
+def load_twelvedata_key():
+    k = os.environ.get("TWELVEDATA_API_KEY", "").strip()
+    if k:
+        return k
+    if os.path.exists(ENV_PATH):
+        for line in open(ENV_PATH, encoding="utf-8"):
+            line = line.strip()
+            if line.startswith("TWELVEDATA_API_KEY"):
+                return line.split("=", 1)[1].strip().strip('"').strip("'")
+    return ""
+
+
+def _td_populate():
+    """필요한 Twelve Data 심볼을 8개/분 배치로 받아 _TD_CACHE에 채운다(무료 8 req/분)."""
+    key = load_twelvedata_key()
+    if not key:
+        print("  [WARN] TWELVEDATA_API_KEY 없음", file=sys.stderr)
+        return
+    syms = [ind["ticker"] for ind in INDICATORS
+            if ind["source"] == "twelvedata" and ind["ticker"]] + DXY_FX
+    for i in range(0, len(syms), 8):
+        chunk = syms[i:i + 8]
+        if i:
+            time.sleep(61)
+        try:
+            r = SESSION.get(TD_QUOTE_URL, params={"symbol": ",".join(chunk), "apikey": key}, timeout=30)
+            d = r.json()
+            for s in chunk:
+                v = d.get(s) if len(chunk) > 1 else d
+                if isinstance(v, dict) and v.get("close") not in (None, ""):
+                    _TD_CACHE[s] = float(v["close"])
+        except Exception as e:
+            print(f"  [WARN] TwelveData {chunk}: {str(e)[:60]}", file=sys.stderr)
+
+
+def fetch_twelvedata(ind):
+    """gold·usdkrw·섹터ETF 의 최신값(전일 대비는 collect에서 계산)."""
+    if not _TD_CACHE:
+        _td_populate()
+    v = _TD_CACHE.get(ind["ticker"])
+    return {"value": round(v, 4)} if v is not None else {"value": None, "note": "TD 미지원/실패"}
+
+
+def fetch_dxy(ind):
+    """달러인덱스(ICE DXY)를 6개 FX로 합성. (TD 무료는 DXY 미제공)"""
+    if not _TD_CACHE:
+        _td_populate()
     try:
-        url = STOOQ_URL.format(sym=requests.utils.quote("^spx"))
-        cells = SESSION.get(url, timeout=15).text.strip().splitlines()[-1].split(",")
-        d = cells[1].strip()             # Symbol,Date,Time,Close
-        datetime.strptime(d, "%Y-%m-%d") # 형식 검증
-        return d
+        fx = {s: _TD_CACHE[s] for s in DXY_FX}
+    except KeyError:
+        return {"value": None, "note": "DXY 합성 FX 부족"}
+    dxy = (50.14348112 * fx["EUR/USD"] ** -0.576 * fx["USD/JPY"] ** 0.136
+           * fx["GBP/USD"] ** -0.119 * fx["USD/CAD"] ** 0.091
+           * fx["USD/SEK"] ** 0.042 * fx["USD/CHF"] ** 0.036)
+    return {"value": round(dxy, 3)}
+
+
+def us_session_date(fallback):
+    """파일 날짜 = '가장 최근에 마감된 미국 영업일'.
+    미국 재무부 일별 발표(영업일마다 갱신)의 최신 일자를 사용한다.
+    (Stooq가 봇 차단되어 더는 못 씀.) 실패 시 fallback(달력 날짜)."""
+    try:
+        s = treasury_series(datetime.now().strftime("%Y"))
+        if s:
+            return s[-1][0]
     except Exception:
-        return fallback
+        pass
+    return fallback
 
 
 # 일간 FRED 지표(매일 종가가 존재) — 각 파일의 '세션 날짜' 관측값으로 맞춘다.
 # (CPI·M2처럼 가끔 발표되는 건 제외. 그쪽은 발표 시차 반영 방식을 유지.)
 # us10y·us2y·spread 는 재무부(treasury) 소스로 이전 → FRED 일간 보정 대상에서 제외.
-DAILY_FRED = {"vix": "VIXCLS", "rrp": "RRPONTSYD", "sofr": "SOFR"}
+# sp500·nasdaq·wti 는 FRED 일간 시리즈로 이전(Stooq 봇차단) → 발표 지연 self-heal 위해 포함.
+DAILY_FRED = {"vix": "VIXCLS", "rrp": "RRPONTSYD", "sofr": "SOFR",
+              "sp500": "SP500", "nasdaq": "NASDAQCOM", "wti": "DCOILWTICO"}
 
 
 def fred_obs_series(sid, key):
@@ -343,7 +408,7 @@ def collect():
         "indicators": {},
     }
     fetchers = {"stooq": fetch_stooq, "coinbase": fetch_coinbase, "cnn": fetch_cnn_fng,
-                "treasury": fetch_treasury}
+                "treasury": fetch_treasury, "twelvedata": fetch_twelvedata, "dxy": fetch_dxy}
     prev_snap = load_previous_snapshot(today)   # 어제(또는 가장 최근) 기록
     # 시장 데이터(주가·코인·심리)는 내가 저장한 직전 기록과 비교하므로,
     # 그 기록이 며칠 전인지로 비교 기간 라벨을 정함(보통 '전일').
@@ -357,6 +422,8 @@ def collect():
         try:
             if ind["source"] == "fred":
                 data = fetch_fred(ind, fred_key)
+            elif ind["source"] == "none":
+                data = {"value": None, "change_pct": None, "note": "무료 소스 없음"}
             else:
                 data = fetchers[ind["source"]](ind)
                 # 주가·코인은 현재값만 오므로 직전 기록 대비를 직접 계산
