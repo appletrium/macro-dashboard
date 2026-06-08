@@ -31,10 +31,11 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.2,
-      "change_pct": 0.29,
-      "status": "ok",
-      "period": "전일"
+      "value": 99.192,
+      "change_pct": 0.25,
+      "obs_date": "2026-06-01",
+      "period": "전일",
+      "status": "ok"
     },
     "spread": {
       "name": "장단기 금리차(10Y-2Y)",
@@ -69,7 +70,8 @@
       "value": 7599.96,
       "change_pct": 0.26,
       "status": "ok",
-      "period": "전일"
+      "period": "전일",
+      "obs_date": "2026-06-01"
     },
     "nasdaq": {
       "name": "나스닥",
@@ -77,10 +79,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 27086.8105,
+      "value": 27086.81,
       "change_pct": 0.42,
       "status": "ok",
-      "period": "전일"
+      "period": "전일",
+      "obs_date": "2026-06-01"
     },
     "kospi": {
       "name": "코스피",
@@ -99,10 +102,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4475.2002,
-      "change_pct": -1.87,
-      "status": "ok",
-      "period": "전일"
+      "value": 4484.6589,
+      "change_pct": -1.27,
+      "obs_date": "2026-06-01",
+      "period": "전일",
+      "status": "ok"
     },
     "wti": {
       "name": "WTI 유가",
@@ -110,10 +114,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 92.16,
-      "change_pct": 5.49,
+      "value": 95.96,
+      "change_pct": 5.27,
       "status": "ok",
-      "period": "전일"
+      "period": "전일",
+      "obs_date": "2026-06-01"
     },
     "usdkrw": {
       "name": "달러/원 환율",

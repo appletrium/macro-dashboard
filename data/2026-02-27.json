@@ -31,10 +31,11 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 97.608,
+      "change_pct": -0.18,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "spread": {
       "name": "장단기 금리차(10Y-2Y)",
@@ -66,10 +67,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 6878.88,
+      "change_pct": -0.43,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "nasdaq": {
       "name": "나스닥",
@@ -77,10 +79,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 22668.21,
+      "change_pct": -0.92,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "kospi": {
       "name": "코스피",
@@ -99,10 +102,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 5251.0185,
+      "change_pct": 1.22,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "wti": {
       "name": "WTI 유가",
@@ -110,10 +114,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 66.96,
+      "change_pct": 2.86,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "usdkrw": {
       "name": "달러/원 환율",
@@ -121,10 +126,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 1440.9049,
+      "change_pct": 0.68,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "btc": {
       "name": "비트코인",
@@ -238,10 +244,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 138.76,
+      "change_pct": -1.6,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlf": {
       "name": "금융",
@@ -249,10 +256,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 51.43,
+      "change_pct": -2.04,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlv": {
       "name": "헬스케어",
@@ -260,10 +268,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 160.2,
+      "change_pct": 1.77,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xly": {
       "name": "임의소비재",
@@ -271,10 +280,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 116.86,
+      "change_pct": -0.16,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlp": {
       "name": "필수소비재",
@@ -282,10 +292,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 90.01,
+      "change_pct": 1.29,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xle": {
       "name": "에너지",
@@ -293,10 +304,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 55.92,
+      "change_pct": 1.58,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xli": {
       "name": "산업재",
@@ -304,10 +316,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 177.14,
+      "change_pct": 0.25,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlb": {
       "name": "소재",
@@ -315,10 +328,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 53.41,
+      "change_pct": 0.77,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlu": {
       "name": "유틸리티",
@@ -326,10 +340,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 47.73,
+      "change_pct": 1.17,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlre": {
       "name": "리츠",
@@ -337,10 +352,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 43.84,
+      "change_pct": 0.48,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sec_xlc": {
       "name": "커뮤니케이션",
@@ -348,10 +364,11 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 118.05,
+      "change_pct": 1.14,
+      "obs_date": "2026-02-27",
+      "period": "전일",
+      "status": "ok"
     },
     "sofr": {
       "name": "SOFR",

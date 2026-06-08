@@ -31,10 +31,11 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.21,
-      "change_pct": 0.04,
-      "status": "ok",
-      "period": "전일"
+      "value": 99.232,
+      "change_pct": 0.08,
+      "obs_date": "2026-05-27",
+      "period": "전일",
+      "status": "ok"
     },
     "spread": {
       "name": "장단기 금리차(10Y-2Y)",
@@ -99,10 +100,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4447.5,
-      "change_pct": -1.18,
-      "status": "ok",
-      "period": "전일"
+      "value": 4456.2988,
+      "change_pct": -1.14,
+      "obs_date": "2026-05-27",
+      "period": "전일",
+      "status": "ok"
     },
     "wti": {
       "name": "WTI 유가",

@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-02",
-  "recorded_at": "2026-06-02T00:00:00",
+  "date": "2026-06-05",
+  "recorded_at": "2026-06-08T17:44:28",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 15.77,
-      "change_pct": -1.74,
-      "obs_date": "2026-06-02",
+      "value": 15.4,
+      "change_pct": -4.11,
+      "obs_date": "2026-06-04",
       "period": "전일",
       "status": "ok"
     },
@@ -20,8 +20,9 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 57.0,
-      "change_pct": 0.88,
+      "value": 42.1,
+      "change_pct": -23.03,
+      "rating": "fear",
       "period": "전일",
       "status": "ok"
     },
@@ -31,9 +32,9 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.215,
-      "change_pct": 0.02,
-      "obs_date": "2026-06-02",
+      "value": 100.076,
+      "change_pct": 0.63,
+      "obs_date": "2026-06-05",
       "period": "전일",
       "status": "ok"
     },
@@ -43,9 +44,9 @@
       "group": 1,
       "unit": "%p",
       "invert": null,
-      "value": 0.41,
-      "change_pct": -2.38,
-      "obs_date": "2026-06-02",
+      "value": 0.38,
+      "obs_date": "2026-06-05",
+      "change_pct": -9.52,
       "period": "전일",
       "status": "ok"
     },
@@ -67,11 +68,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 7609.78,
-      "change_pct": 0.13,
-      "status": "ok",
+      "value": 7584.31,
+      "change_pct": 0.41,
+      "obs_date": "2026-06-04",
       "period": "전일",
-      "obs_date": "2026-06-02"
+      "status": "ok"
     },
     "nasdaq": {
       "name": "나스닥",
@@ -79,11 +80,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 27093.9,
-      "change_pct": 0.03,
-      "status": "ok",
+      "value": 26830.96,
+      "change_pct": -0.09,
+      "obs_date": "2026-06-04",
       "period": "전일",
-      "obs_date": "2026-06-02"
+      "status": "ok"
     },
     "kospi": {
       "name": "코스피",
@@ -91,10 +92,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 8788.3799,
-      "change_pct": 3.68,
-      "status": "ok",
-      "period": "전일"
+      "value": null,
+      "change_pct": null,
+      "note": "무료 소스 없음",
+      "status": "pending"
     },
     "gold": {
       "name": "금",
@@ -102,9 +103,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4488.6715,
-      "change_pct": 0.09,
-      "obs_date": "2026-06-02",
+      "value": 4328.9595,
+      "change_pct": -3.28,
+      "obs_date": "2026-06-05",
       "period": "전일",
       "status": "ok"
     },
@@ -116,9 +117,9 @@
       "invert": null,
       "value": 95.96,
       "change_pct": 5.27,
-      "status": "ok",
+      "obs_date": "2026-06-01",
       "period": "전일",
-      "obs_date": "2026-06-01"
+      "status": "ok"
     },
     "usdkrw": {
       "name": "달러/원 환율",
@@ -126,10 +127,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1511.27,
-      "change_pct": 0.29,
-      "status": "ok",
-      "period": "전일"
+      "value": 1534.3329,
+      "change_pct": -0.4,
+      "period": "전일",
+      "status": "ok"
     },
     "btc": {
       "name": "비트코인",
@@ -137,8 +138,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 66668.585,
-      "change_pct": -9.39,
+      "value": 63062.625,
+      "change_pct": -0.41,
       "period": "전일",
       "status": "ok"
     },
@@ -148,8 +149,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1856.425,
-      "change_pct": -7.37,
+      "value": 1670.025,
+      "change_pct": -4.94,
       "period": "전일",
       "status": "ok"
     },
@@ -159,9 +160,9 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": 4.46,
-      "change_pct": -0.22,
-      "obs_date": "2026-06-02",
+      "value": 4.55,
+      "obs_date": "2026-06-05",
+      "change_pct": 1.79,
       "period": "전일",
       "status": "ok"
     },
@@ -171,9 +172,9 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": 4.05,
-      "change_pct": 0.0,
-      "obs_date": "2026-06-02",
+      "value": 4.17,
+      "obs_date": "2026-06-05",
+      "change_pct": 2.96,
       "period": "전일",
       "status": "ok"
     },
@@ -197,7 +198,7 @@
       "invert": true,
       "value": 4.3,
       "change_pct": 0.0,
-      "obs_date": "2026-04-01",
+      "obs_date": "2026-05-01",
       "period": "전월",
       "status": "ok"
     },
@@ -213,15 +214,15 @@
       "period": "전월",
       "status": "ok"
     },
-    "rrp": {
-      "name": "역레포(RRP)",
-      "category": "유동성",
+    "sofr": {
+      "name": "SOFR",
+      "category": "금리",
       "group": 3,
-      "unit": "B",
+      "unit": "%",
       "invert": null,
-      "value": 2.502,
-      "change_pct": 92.17,
-      "obs_date": "2026-06-02",
+      "value": 3.62,
+      "change_pct": 0.28,
+      "obs_date": "2026-06-04",
       "period": "전일",
       "status": "ok"
     },
@@ -231,10 +232,22 @@
       "group": 3,
       "unit": "B",
       "invert": null,
-      "value": 6704.383,
-      "change_pct": -0.14,
-      "obs_date": "2026-05-27",
+      "value": 6711.495,
+      "change_pct": 0.11,
+      "obs_date": "2026-06-03",
       "period": "전주",
+      "status": "ok"
+    },
+    "rrp": {
+      "name": "역레포(RRP)",
+      "category": "유동성",
+      "group": 3,
+      "unit": "B",
+      "invert": null,
+      "value": 0.761,
+      "change_pct": -32.17,
+      "obs_date": "2026-06-05",
+      "period": "전일",
       "status": "ok"
     },
     "sec_xlk": {
@@ -243,8 +256,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 198.21,
-      "change_pct": 1.25,
+      "value": 180.3,
+      "change_pct": -6.66,
       "period": "전일",
       "status": "ok"
     },
@@ -254,8 +267,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 51.46,
-      "change_pct": 0.06,
+      "value": 52.3,
+      "change_pct": 0.17,
       "period": "전일",
       "status": "ok"
     },
@@ -265,8 +278,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 146.4,
-      "change_pct": -0.97,
+      "value": 153.01,
+      "change_pct": 0.61,
       "period": "전일",
       "status": "ok"
     },
@@ -276,8 +289,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 117.59,
-      "change_pct": -0.51,
+      "value": 114.86,
+      "change_pct": -2.05,
       "period": "전일",
       "status": "ok"
     },
@@ -287,8 +300,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 81.83,
-      "change_pct": -0.24,
+      "value": 83.44,
+      "change_pct": 1.71,
       "period": "전일",
       "status": "ok"
     },
@@ -298,8 +311,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 57.96,
-      "change_pct": 1.15,
+      "value": 57.67,
+      "change_pct": -1.84,
       "period": "전일",
       "status": "ok"
     },
@@ -309,8 +322,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 174.19,
-      "change_pct": 1.04,
+      "value": 174.18,
+      "change_pct": -1.12,
       "period": "전일",
       "status": "ok"
     },
@@ -320,8 +333,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 51.52,
-      "change_pct": 1.18,
+      "value": 50.63,
+      "change_pct": -1.92,
       "period": "전일",
       "status": "ok"
     },
@@ -331,8 +344,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 43.9,
-      "change_pct": 1.86,
+      "value": 44.35,
+      "change_pct": 0.93,
       "period": "전일",
       "status": "ok"
     },
@@ -342,8 +355,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 43.49,
-      "change_pct": 0.51,
+      "value": 44.7,
+      "change_pct": 0.68,
       "period": "전일",
       "status": "ok"
     },
@@ -353,20 +366,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 113.57,
-      "change_pct": -1.76,
-      "period": "전일",
-      "status": "ok"
-    },
-    "sofr": {
-      "name": "SOFR",
-      "category": "금리",
-      "group": 3,
-      "unit": "%",
-      "invert": null,
-      "value": 3.63,
-      "change_pct": -0.55,
-      "obs_date": "2026-06-02",
+      "value": 111.67,
+      "change_pct": -1.27,
       "period": "전일",
       "status": "ok"
     }

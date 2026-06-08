@@ -31,8 +31,9 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 98.77,
+      "value": 98.759,
       "change_pct": -0.28,
+      "obs_date": "2026-03-04",
       "period": "전일",
       "status": "ok"
     },
@@ -99,8 +100,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 5120.2002,
-      "change_pct": 0.25,
+      "value": 5136.5591,
+      "change_pct": 0.45,
+      "obs_date": "2026-03-04",
       "period": "전일",
       "status": "ok"
     },

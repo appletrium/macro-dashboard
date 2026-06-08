@@ -31,9 +31,10 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.17,
-      "change_pct": -0.15,
-      "period": "전주",
+      "value": 99.148,
+      "change_pct": 0.17,
+      "obs_date": "2026-05-26",
+      "period": "전일",
       "status": "ok"
     },
     "spread": {
@@ -99,9 +100,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4500.3999,
-      "change_pct": -0.46,
-      "period": "전주",
+      "value": 4507.5834,
+      "change_pct": -1.39,
+      "obs_date": "2026-05-26",
+      "period": "전일",
       "status": "ok"
     },
     "wti": {
