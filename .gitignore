@@ -8,3 +8,6 @@ __pycache__/
 # macOS / 로그
 .DS_Store
 logs/
+
+# 중복 실행 방지 락(런타임)
+.record.lock

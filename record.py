@@ -14,6 +14,7 @@ import json
 import os
 import sys
 import time
+import fcntl
 from datetime import datetime, timezone, timedelta
 
 import requests
@@ -714,6 +715,13 @@ def build_dashboard(history):
 
 
 def main():
+    # 중복 실행 방지(cron·launchd 동시 트리거 등): 락을 못 잡으면 즉시 종료.
+    _lock = open(os.path.join(ROOT, ".record.lock"), "w")
+    try:
+        fcntl.flock(_lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        print("이미 다른 인스턴스가 실행 중 — 중복 실행 방지로 종료")
+        return
     print(f"\n📊 매크로 지표 수집 — {datetime.now():%Y-%m-%d %H:%M}\n")
     snapshot = collect()
     path = save_snapshot(snapshot)
