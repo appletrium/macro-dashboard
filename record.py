@@ -51,7 +51,7 @@ ENV_PATH = os.path.join(ROOT, ".env")
 #  group 값(1/2/3)은 순위가 아니라 '성격별 묶음'입니다.
 INDICATORS = [
     # ── 1) 시장 심리 ───────────────────────────────────────────────────
-    {"key": "vix",     "name": "VIX 공포지수",    "category": "변동성",   "source": "fred",     "ticker": "VIXCLS",   "group": 1, "invert": True},
+    {"key": "vix",     "name": "VIX 공포지수",    "category": "변동성",   "source": "cboe",     "ticker": "VIX",      "group": 1, "invert": True},
     {"key": "fng",     "name": "공포·탐욕 지수",    "category": "심리지표", "source": "cnn",      "ticker": "",         "group": 1},
     {"key": "dxy",     "name": "달러 인덱스",      "category": "환율",     "source": "dxy",      "ticker": "",         "group": 1},
     {"key": "spread",  "name": "장단기 금리차(10Y-2Y)", "category": "경기신호", "source": "treasury", "ticker": "SPREAD", "group": 1, "unit": "%p"},
@@ -315,6 +315,43 @@ def fetch_dxy(ind):
     return {"value": round(dxy, 3)}
 
 
+# ── CBOE VIX (무료, 키 불필요) — FRED VIXCLS와 동일하나 발표 지연이 없음 ──
+CBOE_VIX_URL = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
+_CBOE_VIX = {}
+
+
+def cboe_vix_series():
+    """CBOE VIX 일별 종가 {YYYY-MM-DD: close}. (FRED VIXCLS의 원천, 무지연)"""
+    if _CBOE_VIX:
+        return _CBOE_VIX
+    import csv as _csv
+    from io import StringIO as _SIO
+    try:
+        r = SESSION.get(CBOE_VIX_URL, timeout=20)
+        r.raise_for_status()
+        for row in _csv.DictReader(_SIO(r.text)):
+            ds, cl = (row.get("DATE") or "").strip(), (row.get("CLOSE") or "").strip()
+            if not ds or not cl:
+                continue
+            try:
+                mm, dd, yy = ds.split("/")
+                _CBOE_VIX[f"{yy}-{int(mm):02d}-{int(dd):02d}"] = float(cl)
+            except ValueError:
+                continue
+    except Exception as e:
+        print(f"  [WARN] CBOE VIX: {str(e)[:50]}", file=sys.stderr)
+    return _CBOE_VIX
+
+
+def fetch_cboe_vix(ind):
+    """VIX 최신 종가(CBOE). 전일 대비는 collect()에서 계산."""
+    s = cboe_vix_series()
+    if not s:
+        return {"value": None, "note": "CBOE VIX 실패"}
+    d = max(s)
+    return {"value": round(s[d], 4), "obs_date": d}
+
+
 def us_session_date(fallback):
     """파일 날짜 = '가장 최근에 마감된 미국 영업일'.
     미국 재무부 일별 발표(영업일마다 갱신)의 최신 일자를 사용한다.
@@ -330,9 +367,9 @@ def us_session_date(fallback):
 
 # 일간 FRED 지표(매일 종가가 존재) — 각 파일의 '세션 날짜' 관측값으로 맞춘다.
 # (CPI·M2처럼 가끔 발표되는 건 제외. 그쪽은 발표 시차 반영 방식을 유지.)
-# us10y·us2y·spread 는 재무부(treasury) 소스로 이전 → FRED 일간 보정 대상에서 제외.
+# us10y·us2y·spread 는 재무부(treasury), vix 는 CBOE 소스로 이전 → FRED 일간 보정 대상에서 제외.
 # sp500·nasdaq·wti 는 FRED 일간 시리즈로 이전(Stooq 봇차단) → 발표 지연 self-heal 위해 포함.
-DAILY_FRED = {"vix": "VIXCLS", "rrp": "RRPONTSYD", "sofr": "SOFR",
+DAILY_FRED = {"rrp": "RRPONTSYD", "sofr": "SOFR",
               "sp500": "SP500", "nasdaq": "NASDAQCOM", "wti": "DCOILWTICO"}
 
 
@@ -409,7 +446,8 @@ def collect():
         "indicators": {},
     }
     fetchers = {"stooq": fetch_stooq, "coinbase": fetch_coinbase, "cnn": fetch_cnn_fng,
-                "treasury": fetch_treasury, "twelvedata": fetch_twelvedata, "dxy": fetch_dxy}
+                "treasury": fetch_treasury, "twelvedata": fetch_twelvedata, "dxy": fetch_dxy,
+                "cboe": fetch_cboe_vix}
     prev_snap = load_previous_snapshot(today)   # 어제(또는 가장 최근) 기록
     # 시장 데이터(주가·코인·심리)는 내가 저장한 직전 기록과 비교하므로,
     # 그 기록이 며칠 전인지로 비교 기간 라벨을 정함(보통 '전일').
