@@ -40,6 +40,7 @@ ENV_PATH = os.path.join(ROOT, ".env")
 #
 #  source "stooq"    → ticker 는 Stooq 심볼 (지수·환율·원자재)
 #  source "fred"     → ticker 는 FRED 시리즈 ID (미국 경제지표 + VIX·국채금리)
+#  source "naver"    → ticker 는 "KOSPI"·"KOSDAQ" (네이버 금융 국내 지수)
 #  source "coinbase" → ticker 는 "ETH-USD" 같은 코인 쌍 (암호화폐)
 #  source "cnn"      → CNN 공포·탐욕 지수 (ticker 불필요)
 #  invert=True 면 "값이 오르면 빨강(위험)"으로 표시 (예: VIX, 실업률)
@@ -60,7 +61,7 @@ INDICATORS = [
     # ── 2) 주요 자산 ───────────────────────────────────────────────────
     {"key": "sp500",   "name": "S&P 500",        "category": "미국 증시", "source": "fred",       "ticker": "SP500",     "group": 2},
     {"key": "nasdaq",  "name": "나스닥",          "category": "미국 증시", "source": "fred",       "ticker": "NASDAQCOM", "group": 2},
-    {"key": "kospi",   "name": "코스피",          "category": "한국 증시", "source": "none",       "ticker": "",          "group": 2},
+    {"key": "kospi",   "name": "코스피",          "category": "한국 증시", "source": "naver",      "ticker": "KOSPI",     "group": 2},
     {"key": "gold",    "name": "금",              "category": "원자재",   "source": "twelvedata", "ticker": "XAU/USD",   "group": 2},
     {"key": "wti",     "name": "WTI 유가",        "category": "원자재",   "source": "fred",       "ticker": "DCOILWTICO","group": 2},
     {"key": "usdkrw",  "name": "달러/원 환율",     "category": "환율",     "source": "twelvedata", "ticker": "USD/KRW",   "group": 2},
@@ -92,6 +93,7 @@ INDICATORS = [
 ]
 
 STOOQ_URL = "https://stooq.com/q/l/?s={sym}&f=sd2t2c&h&e=csv"
+NAVER_INDEX_URL = "https://m.stock.naver.com/api/index/{code}/basic"
 COINBASE_URL = "https://api.coinbase.com/v2/prices/{pair}/spot"
 CNN_FNG_URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
 FRED_URL = ("https://api.stlouisfed.org/fred/series/observations"
@@ -103,6 +105,13 @@ CNN_HEADERS = {
     "Accept": "application/json, text/plain, */*",
     "Accept-Language": "en-US,en;q=0.9",
     "Referer": "https://www.cnn.com/markets/fear-and-greed",
+}
+# 네이버 금융 모바일 API도 브라우저형 헤더(특히 Referer)가 있어야 안정적입니다.
+NAVER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/json",
+    "Referer": "https://m.stock.naver.com/",
 }
 
 
@@ -132,6 +141,18 @@ def fetch_stooq(ind):
     close = cells[-1].strip()
     if close in ("N/D", "", "0"):
         raise ValueError(f"값 없음({close})")
+    return {"value": round(float(close), 4), "change_pct": None}
+
+
+def fetch_naver(ind):
+    """네이버 금융에서 국내 지수 종가를 받아옵니다 (ticker = "KOSPI"·"KOSDAQ").
+    무료·레이트리밋 없음. 전일 대비는 다른 시장지표와 같게 나중에 계산."""
+    url = NAVER_INDEX_URL.format(code=ind["ticker"])
+    r = SESSION.get(url, headers=NAVER_HEADERS, timeout=15)
+    r.raise_for_status()
+    close = r.json().get("closePrice", "").replace(",", "").strip()
+    if not close:
+        raise ValueError("종가 없음")
     return {"value": round(float(close), 4), "change_pct": None}
 
 
@@ -270,6 +291,35 @@ def load_twelvedata_key():
     return ""
 
 
+def _td_get(chunk, key, tries=4):
+    """TD /quote 한 배치를 받아 _TD_CACHE를 채운다. 일시적 실패 시 대기 후 재시도.
+    - 429(요청 과다): 무료 8 req/분 → 분 창이 리셋되도록 61초 대기 후 재시도
+    - connection-reset 등 네트워크 오류: 20초 대기 후 재시도
+    - 정상 응답(HTTP 200)인데 일부 심볼이 비면 미지원이므로 재시도하지 않음"""
+    for attempt in range(tries):
+        last = attempt == tries - 1
+        try:
+            r = SESSION.get(TD_QUOTE_URL, params={"symbol": ",".join(chunk), "apikey": key}, timeout=30)
+            d = r.json() if r.content else {}
+            rate_limited = (r.status_code == 429) or (isinstance(d, dict) and d.get("code") == 429)
+            if rate_limited and not last:
+                print(f"  [TD 429] {chunk} → 61s 대기 후 재시도({attempt + 1}/{tries})", file=sys.stderr)
+                time.sleep(61)
+                continue
+            r.raise_for_status()
+            for s in chunk:
+                v = d.get(s) if len(chunk) > 1 else d
+                if isinstance(v, dict) and v.get("close") not in (None, ""):
+                    _TD_CACHE[s] = float(v["close"])
+            return                      # 정상 응답 — 미지원 심볼은 재시도해도 동일
+        except Exception as e:
+            if not last:
+                print(f"  [TD 재시도] {chunk}: {str(e)[:50]} → 20s 후({attempt + 1}/{tries})", file=sys.stderr)
+                time.sleep(20)
+                continue
+            print(f"  [WARN] TwelveData {chunk}: {str(e)[:60]}", file=sys.stderr)
+
+
 def _td_populate():
     """필요한 Twelve Data 심볼을 8개/분 배치로 받아 _TD_CACHE에 채운다(무료 8 req/분)."""
     key = load_twelvedata_key()
@@ -282,15 +332,7 @@ def _td_populate():
         chunk = syms[i:i + 8]
         if i:
             time.sleep(61)
-        try:
-            r = SESSION.get(TD_QUOTE_URL, params={"symbol": ",".join(chunk), "apikey": key}, timeout=30)
-            d = r.json()
-            for s in chunk:
-                v = d.get(s) if len(chunk) > 1 else d
-                if isinstance(v, dict) and v.get("close") not in (None, ""):
-                    _TD_CACHE[s] = float(v["close"])
-        except Exception as e:
-            print(f"  [WARN] TwelveData {chunk}: {str(e)[:60]}", file=sys.stderr)
+        _td_get(chunk, key)
 
 
 def fetch_twelvedata(ind):
@@ -435,6 +477,47 @@ def reconcile_daily_fred(recent=6):
             json.dump(snap, f, ensure_ascii=False, indent=2)
 
 
+def reconcile_cboe_vix(recent=6):
+    """VIX(CBOE)를 각 파일의 세션 날짜 종가로 보정(발표 지연 self-heal).
+    기록 당일(미 장 마감 직후)엔 CBOE가 그날 종가를 아직 안 올려 직전값(stale)이
+    들어가는데, 이후 실행에서 발표된 값으로 자동으로 맞춰준다.
+    (reconcile_daily_fred의 CBOE판 — VIX는 FRED가 아니라 CBOE 소스이므로 별도 보정)"""
+    s = cboe_vix_series()
+    if not s:
+        return
+    obs = sorted(s.items())   # 오름차순 [(YYYY-MM-DD, close), ...]
+    files = sorted(f for f in os.listdir(DATA_DIR) if f.endswith(".json"))
+    if recent:
+        files = files[-recent:]
+    for fn in files:
+        path = os.path.join(DATA_DIR, fn)
+        with open(path, encoding="utf-8") as f:
+            snap = json.load(f)
+        day = snap["date"]
+        if "vix" not in snap["indicators"]:
+            continue
+        ci = -1
+        for i, (d, _) in enumerate(obs):
+            if d <= day:
+                ci = i
+            else:
+                break
+        if ci < 0:
+            continue
+        cur = obs[ci]
+        prev = obs[ci - 1] if ci >= 1 else None
+        chg = round((cur[1] - prev[1]) / prev[1] * 100, 2) if prev and prev[1] else None
+        gap = None
+        if prev:
+            gap = (datetime.strptime(cur[0], "%Y-%m-%d")
+                   - datetime.strptime(prev[0], "%Y-%m-%d")).days
+        snap["indicators"]["vix"].update({"value": round(cur[1], 4), "change_pct": chg,
+                                          "obs_date": cur[0], "period": period_label(gap),
+                                          "status": "ok"})
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(snap, f, ensure_ascii=False, indent=2)
+
+
 def collect():
     """모든 지표를 수집해서 한 건의 스냅샷(dict)으로 반환."""
     fred_key = load_fred_key()
@@ -445,9 +528,9 @@ def collect():
         "recorded_at": datetime.now().isoformat(timespec="seconds"),
         "indicators": {},
     }
-    fetchers = {"stooq": fetch_stooq, "coinbase": fetch_coinbase, "cnn": fetch_cnn_fng,
-                "treasury": fetch_treasury, "twelvedata": fetch_twelvedata, "dxy": fetch_dxy,
-                "cboe": fetch_cboe_vix}
+    fetchers = {"stooq": fetch_stooq, "naver": fetch_naver, "coinbase": fetch_coinbase,
+                "cnn": fetch_cnn_fng, "treasury": fetch_treasury, "twelvedata": fetch_twelvedata,
+                "dxy": fetch_dxy, "cboe": fetch_cboe_vix}
     prev_snap = load_previous_snapshot(today)   # 어제(또는 가장 최근) 기록
     # 시장 데이터(주가·코인·심리)는 내가 저장한 직전 기록과 비교하므로,
     # 그 기록이 며칠 전인지로 비교 기간 라벨을 정함(보통 '전일').
@@ -764,8 +847,10 @@ def main():
     snapshot = collect()
     path = save_snapshot(snapshot)
     print(f"\n💾 저장: {os.path.relpath(path, ROOT)}")
-    reconcile_daily_fred()   # 일간 FRED(VIX·금리)를 세션 날짜 종가로 보정(발표 지연 self-heal)
+    reconcile_daily_fred()   # 일간 FRED(금리·RRP·지수·WTI)를 세션 날짜 종가로 보정(발표 지연 self-heal)
     print("🔧 일간 FRED 보정 완료")
+    reconcile_cboe_vix()     # VIX(CBOE)를 세션 날짜 종가로 보정(발표 지연 self-heal)
+    print("🔧 VIX(CBOE) 보정 완료")
     history = load_history()
     html = build_dashboard(history)
     print(f"🖥️  대시보드 갱신: {os.path.relpath(html, ROOT)}  (누적 {len(history)}일치)\n")
