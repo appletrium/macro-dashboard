@@ -12,6 +12,7 @@
 
 import json
 import os
+import re
 import sys
 import time
 import fcntl
@@ -94,6 +95,8 @@ INDICATORS = [
 
 STOOQ_URL = "https://stooq.com/q/l/?s={sym}&f=sd2t2c&h&e=csv"
 NAVER_INDEX_URL = "https://m.stock.naver.com/api/index/{code}/basic"
+NAVER_SISE_URL = ("https://api.finance.naver.com/siseJson.naver"
+                  "?symbol={code}&requestType=1&startTime={start}&endTime={end}&timeframe=day")
 COINBASE_URL = "https://api.coinbase.com/v2/prices/{pair}/spot"
 CNN_FNG_URL = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
 FRED_URL = ("https://api.stlouisfed.org/fred/series/observations"
@@ -518,6 +521,68 @@ def reconcile_cboe_vix(recent=6):
             json.dump(snap, f, ensure_ascii=False, indent=2)
 
 
+def naver_kospi_series(days=45, code="KOSPI"):
+    """네이버 일별 OHLC에서 종가 시계열 {YYYY-MM-DD: close} 을 받아온다(최근 days일).
+    응답은 JS 배열 형태: ["20260612", 시가, 고가, 저가, [종가], 거래량, 외국인소진율]."""
+    now = datetime.now()
+    url = NAVER_SISE_URL.format(
+        code=code,
+        start=(now - timedelta(days=days)).strftime("%Y%m%d"),
+        end=(now + timedelta(days=1)).strftime("%Y%m%d"))
+    out = {}
+    try:
+        r = SESSION.get(url, headers=NAVER_HEADERS, timeout=20)
+        r.raise_for_status()
+        # 날짜 다음 숫자 3개(시가·고가·저가)를 건너뛰고 4번째(종가)만 캡처
+        for m in re.finditer(r'\["(\d{8})",\s*[\d.]+,\s*[\d.]+,\s*[\d.]+,\s*([\d.]+)', r.text):
+            ymd = m.group(1)
+            out[f"{ymd[:4]}-{ymd[4:6]}-{ymd[6:]}"] = float(m.group(2))
+    except Exception as e:
+        print(f"  [WARN] 네이버 코스피 시계열: {str(e)[:50]}", file=sys.stderr)
+    return out
+
+
+def reconcile_kospi(recent=6):
+    """코스피를 각 파일의 세션 날짜 종가로 보정(self-heal).
+    라이브 fetch_naver는 '가장 최신 종가'를 가져오므로, 파일 날짜(미국 세션 날짜)가
+    한국 최신 거래일보다 뒤처질 때 세션일과 안 맞는 값이 들어간다. 이 함수가 매 실행마다
+    네이버 일별 종가로 '세션일 이하 가장 가까운 거래일' 값에 다시 맞춘다.
+    (reconcile_daily_fred/reconcile_cboe_vix의 코스피판)"""
+    s = naver_kospi_series()
+    if not s:
+        return
+    obs = sorted(s.items())   # 오름차순 [(YYYY-MM-DD, close), ...]
+    files = sorted(f for f in os.listdir(DATA_DIR) if f.endswith(".json"))
+    if recent:
+        files = files[-recent:]
+    for fn in files:
+        path = os.path.join(DATA_DIR, fn)
+        with open(path, encoding="utf-8") as f:
+            snap = json.load(f)
+        day = snap["date"]
+        if "kospi" not in snap["indicators"]:
+            continue
+        ci = -1
+        for i, (d, _) in enumerate(obs):
+            if d <= day:
+                ci = i
+            else:
+                break
+        if ci < 0:                       # 시계열 범위보다 오래된 파일은 건드리지 않음
+            continue
+        cur = obs[ci]
+        prev = obs[ci - 1] if ci >= 1 else None
+        chg = round((cur[1] - prev[1]) / prev[1] * 100, 2) if prev and prev[1] else None
+        gap = None
+        if prev:
+            gap = (datetime.strptime(cur[0], "%Y-%m-%d")
+                   - datetime.strptime(prev[0], "%Y-%m-%d")).days
+        snap["indicators"]["kospi"].update({"value": round(cur[1], 4), "change_pct": chg,
+                                            "period": period_label(gap), "status": "ok"})
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(snap, f, ensure_ascii=False, indent=2)
+
+
 def collect():
     """모든 지표를 수집해서 한 건의 스냅샷(dict)으로 반환."""
     fred_key = load_fred_key()
@@ -851,6 +916,8 @@ def main():
     print("🔧 일간 FRED 보정 완료")
     reconcile_cboe_vix()     # VIX(CBOE)를 세션 날짜 종가로 보정(발표 지연 self-heal)
     print("🔧 VIX(CBOE) 보정 완료")
+    reconcile_kospi()        # 코스피(네이버)를 세션 날짜 종가로 정렬(최신 종가 오삽입 self-heal)
+    print("🔧 코스피 보정 완료")
     history = load_history()
     html = build_dashboard(history)
     print(f"🖥️  대시보드 갱신: {os.path.relpath(html, ROOT)}  (누적 {len(history)}일치)\n")
