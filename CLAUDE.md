@@ -15,8 +15,9 @@ python3 backfill_month.py 2026-03-27 2026-04-24   # 특정 기간 백필 (/tmp/y
 ```
 
 - `dashboard.html`은 브라우저에서 직접 열어 확인 (서버 불필요). 클라우드 실행분은 `git pull` 후 열람.
-- **자동 실행(현재 주체): GitHub Actions** `.github/workflows/daily.yml` — 매일 22:00 UTC(=07:00 KST) `record.py` 실행 후 `data/`·`dashboard.html`을 저장소(`appletrium/macro-dashboard`, Private)에 자동 커밋. 맥이 꺼져 있어도 실행됨. 수동 실행: `gh workflow run daily.yml` 또는 Actions 탭. 키는 Actions 시크릿(`FRED_API_KEY`·`TWELVEDATA_API_KEY`).
-- **로컬 launchd는 비활성화됨**(`launchctl disable`, plist는 보존). 이중 실행→커밋 충돌 방지용. 재활성화: `launchctl enable gui/$(id -u)/com.macro-dashboard.daily && launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.macro-dashboard.daily.plist`. (Private+무료플랜이라 GitHub Pages 웹 URL은 불가 — 열람은 로컬 `git pull`.)
+- **자동 실행(현재 주체): GitHub Actions** `.github/workflows/daily.yml` — 매일 22:00 UTC(=07:00 KST) `record.py` 실행 후 `data/`·`dashboard.html`을 저장소(`appletrium/macro-dashboard`, **Public**)에 자동 커밋. 맥이 꺼져 있어도 실행됨. 수동 실행: `gh workflow run daily.yml` 또는 Actions 탭. 키는 Actions 시크릿(`FRED_API_KEY`·`TWELVEDATA_API_KEY`).
+- **웹 열람: GitHub Pages** → https://appletrium.github.io/macro-dashboard/ (master 루트, `index.html`이 `dashboard.html`로 리다이렉트). 매 커밋(=매일 자동수집)마다 Pages가 재빌드돼 최신 유지. 로컬에서 보려면 `git pull` 후 `dashboard.html`.
+- **로컬 launchd는 비활성화됨**(`launchctl disable`, plist는 보존). 이중 실행→커밋 충돌 방지용. 재활성화: `launchctl enable gui/$(id -u)/com.macro-dashboard.daily && launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.macro-dashboard.daily.plist`.
 - API 키: 로컬은 `.env`에 `FRED_API_KEY`(FRED 지표), `TWELVEDATA_API_KEY`(금·환율·섹터ETF·DXY합성). 없으면 해당 지표만 실패하고 나머지는 동작.
 
 ## 아키텍처
