@@ -91,10 +91,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "무료 소스 없음",
-      "status": "pending"
+      "value": 7763.95,
+      "change_pct": 0.43,
+      "status": "ok",
+      "period": "전일"
     },
     "gold": {
       "name": "금",

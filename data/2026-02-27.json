@@ -91,10 +91,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "'<' not supported between instances of 'str' and 'NoneType'",
-      "status": "pending"
+      "value": 6244.13,
+      "change_pct": -1.0,
+      "status": "ok",
+      "period": "전일"
     },
     "gold": {
       "name": "금",
