@@ -1,0 +1,3 @@
+# macro-dashboard 런타임 의존성 (표준 라이브러리 외 유일)
+# 로컬: pip install -r requirements.txt  /  GitHub Actions도 동일하게 설치
+requests>=2.31,<3

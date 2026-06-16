@@ -1,0 +1,51 @@
+name: daily-macro
+
+# 매일 클라우드(GitHub Actions)에서 record.py를 돌려 data/·dashboard.html을
+# 자동 갱신·커밋한다. 내 맥이 꺼져 있어도 실행됨.
+on:
+  schedule:
+    # cron은 UTC 기준. 22:00 UTC = 다음날 07:00 KST.
+    # (Actions cron은 베스트에포트라 수십 분 늦거나 드물게 누락될 수 있음 — record.py가 self-heal)
+    - cron: "0 22 * * *"
+  workflow_dispatch: {}   # 액션 탭에서 수동 실행 버튼
+
+# 같은 시각 중복 실행 방지(겹치면 뒤 것을 큐잉)
+concurrency:
+  group: daily-macro
+  cancel-in-progress: false
+
+permissions:
+  contents: write   # 갱신 결과를 저장소에 커밋·푸시하기 위함
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Collect indicators
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+        run: python3 record.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data dashboard.html
+          if git diff --cached --quiet; then
+            echo "변경 없음 — 커밋 생략"
+          else
+            git commit -m "data: 클라우드 자동 수집 $(date -u +%Y-%m-%d)"
+            git push
+          fi
