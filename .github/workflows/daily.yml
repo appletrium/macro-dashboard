@@ -1,5 +1,4 @@
 name: daily-macro
-# (등록 트리거용 후속 커밋 — 첫 푸시 워크플로가 인식되도록)
 
 # 매일 클라우드(GitHub Actions)에서 record.py를 돌려 data/·dashboard.html을
 # 자동 갱신·커밋한다. 내 맥이 꺼져 있어도 실행됨.
@@ -23,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
