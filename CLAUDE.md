@@ -15,7 +15,7 @@ python3 backfill_month.py 2026-03-27 2026-04-24   # 특정 기간 백필 (/tmp/y
 ```
 
 - `dashboard.html`은 브라우저에서 직접 열어 확인 (서버 불필요).
-- 자동 실행: launchd `com.macro-dashboard.daily` (매일 08:00, `~/Library/LaunchAgents/com.macro-dashboard.daily.plist`), 로그는 `logs/launchd.log`.
+- 자동 실행: launchd `com.macro-dashboard.daily` (매일 07:00, `~/Library/LaunchAgents/com.macro-dashboard.daily.plist`), 로그는 `logs/launchd.log`.
 - API 키: `.env`에 `FRED_API_KEY`(FRED 지표), `TWELVEDATA_API_KEY`(금·환율·섹터ETF·DXY합성). 없으면 해당 지표만 실패하고 나머지는 동작.
 
 ## 아키텍처
