@@ -113,10 +113,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 78.94,
-      "change_pct": -1.75,
-      "obs_date": "2026-06-22",
-      "period": "전주",
+      "value": 72.67,
+      "change_pct": 1.75,
+      "obs_date": "2026-06-25",
+      "period": "전일",
       "status": "ok"
     },
     "usdkrw": {
