@@ -862,6 +862,7 @@ def build_dashboard(history):
   /* 좁은 화면(폰): 한 줄 대신 카드 2개 폭 안에서 여러 줄로 줄바꿈 —
      flex-basis도 등락폭에 비례시켜 변동폭이 큰 섹터일수록 칸이 커지도록 */
   @media (max-width: 640px) {{
+    body {{ padding-left: 16px; }}  /* 좌측 여백을 우측과 동일하게 (폰에서 카드 좌우 여백 대칭) */
     .sec-row {{ flex-wrap: wrap; gap: 4px; }}
     .sec {{ flex-basis: calc(40px + var(--wt, 0.3) * 24px); min-width: 0;
       padding: 7px 4px; }}
