@@ -778,7 +778,7 @@ def build_dashboard(history):
                     alpha = 0.15 + min(mag / 2.5, 1.0) * 0.6
                     rgb = "34,200,120" if ch > 0.001 else ("255,80,80" if ch < -0.001 else "125,134,156")
                     bg, txt = f"rgba({rgb},{alpha:.2f})", f"{ch:+.2f}%"
-                tiles += f'''<div class="sec" style="flex-grow:{weight:.2f};background:{bg}" title="{v.get("name","")} ({v.get("category","")})">
+                tiles += f'''<div class="sec" style="--wt:{weight:.2f};background:{bg}" title="{v.get("name","")} ({v.get("category","")})">
           <div class="sec-tk">{v.get("category","")}</div>
           <div class="sec-chg">{txt}</div>
           <div class="sec-nm">{v.get("name","")}</div>
@@ -850,14 +850,25 @@ def build_dashboard(history):
   .mini span {{ color: #6b7488; font-size: 9.5px; }}
   .mini b {{ font-size: 10px; font-weight: 600; white-space: nowrap; }}
   .spark svg {{ display: block; }}
-  /* 섹터 — 한 줄, 등락폭 비례 너비 */
+  /* 섹터 — 넓은 화면은 한 줄, 등락폭 비례 너비 (--wt = 비례 가중치) */
   .sec-row {{ display: flex; gap: 5px; align-items: stretch; }}
-  .sec {{ flex-basis: 0; min-width: 46px; border: 1px solid #2a3242; border-radius: 8px;
+  .sec {{ flex-grow: var(--wt, 0.3); flex-basis: 0; min-width: 46px;
+    border: 1px solid #2a3242; border-radius: 8px;
     padding: 8px 5px; overflow: hidden; text-align: center; }}
   .sec-tk {{ font-size: 10px; font-weight: 700; color: #cdd4e2; white-space: nowrap; }}
   .sec-chg {{ font-size: 14px; font-weight: 700; color: #f2f5fa; margin: 3px 0 2px;
     letter-spacing: -0.3px; white-space: nowrap; }}
   .sec-nm {{ font-size: 9.5px; color: #c2c9d6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+  /* 좁은 화면(폰): 한 줄 대신 카드 2개 폭 안에서 여러 줄로 줄바꿈 —
+     flex-basis도 등락폭에 비례시켜 변동폭이 큰 섹터일수록 칸이 커지도록 */
+  @media (max-width: 640px) {{
+    .sec-row {{ flex-wrap: wrap; gap: 4px; }}
+    .sec {{ flex-basis: calc(40px + var(--wt, 0.3) * 24px); min-width: 0;
+      padding: 7px 4px; }}
+    .sec-tk {{ font-size: 9.5px; }}
+    .sec-chg {{ font-size: 12px; margin: 2px 0 1px; }}
+    .sec-nm {{ font-size: 8.5px; }}
+  }}
   /* 날짜 네비게이션 */
   .datenav {{ max-width: 1480px; margin: 0 auto 16px; display: flex; flex-wrap: nowrap;
     gap: 4px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }}
