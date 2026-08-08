@@ -1,6 +1,6 @@
 {
   "date": "2026-08-07",
-  "recorded_at": "2026-08-07T22:41:17",
+  "recorded_at": "2026-08-08T22:34:23",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 15.15,
-      "obs_date": "2026-08-06",
-      "change_pct": -4.17,
+      "value": 14.9,
+      "obs_date": "2026-08-07",
+      "change_pct": -1.65,
       "period": "전일",
       "status": "ok"
     },
@@ -32,7 +32,7 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.604,
+      "value": 99.603,
       "change_pct": -0.36,
       "period": "전일",
       "status": "ok"
@@ -67,9 +67,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 7709.96,
-      "change_pct": -0.18,
-      "obs_date": "2026-08-06",
+      "value": 7757.64,
+      "change_pct": 0.62,
+      "obs_date": "2026-08-07",
       "period": "전일",
       "status": "ok"
     },
@@ -79,9 +79,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 26348.35,
-      "change_pct": -0.06,
-      "obs_date": "2026-08-06",
+      "value": 26690.62,
+      "change_pct": 1.3,
+      "obs_date": "2026-08-07",
       "period": "전일",
       "status": "ok"
     },
@@ -102,7 +102,7 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4342.3515,
+      "value": 4342.3536,
       "change_pct": 2.28,
       "period": "전일",
       "status": "ok"
@@ -125,7 +125,7 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1407.7726,
+      "value": 1407.7732,
       "change_pct": -0.9,
       "period": "전일",
       "status": "ok"
@@ -136,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 64823.045,
-      "change_pct": 0.67,
+      "value": 64934.755,
+      "change_pct": 0.85,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1913.595,
-      "change_pct": 0.51,
+      "value": 1917.935,
+      "change_pct": 0.74,
       "period": "전일",
       "status": "ok"
     },
@@ -265,8 +265,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 57.62,
-      "change_pct": -0.33,
+      "value": 57.6,
+      "change_pct": -0.36,
       "period": "전일",
       "status": "ok"
     },
@@ -276,8 +276,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 165.67,
-      "change_pct": 0.74,
+      "value": 165.68,
+      "change_pct": 0.75,
       "period": "전일",
       "status": "ok"
     },
@@ -287,8 +287,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 119.81,
-      "change_pct": 1.45,
+      "value": 119.86,
+      "change_pct": 1.49,
       "period": "전일",
       "status": "ok"
     },
@@ -309,8 +309,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 57.48,
-      "change_pct": -1.17,
+      "value": 57.5,
+      "change_pct": -1.13,
       "period": "전일",
       "status": "ok"
     },
@@ -320,8 +320,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 185.14,
-      "change_pct": 0.21,
+      "value": 185.18,
+      "change_pct": 0.23,
       "period": "전일",
       "status": "ok"
     },
@@ -331,7 +331,7 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 52.8579,
+      "value": 52.86,
       "change_pct": 1.32,
       "period": "전일",
       "status": "ok"
@@ -342,8 +342,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 43.6,
-      "change_pct": 0.51,
+      "value": 43.61,
+      "change_pct": 0.53,
       "period": "전일",
       "status": "ok"
     },
@@ -353,8 +353,8 @@
       "group": 4,
       "unit": null,
       "invert": null,
-      "value": 44.985,
-      "change_pct": 0.39,
+      "value": 44.98,
+      "change_pct": 0.38,
       "period": "전일",
       "status": "ok"
     },
