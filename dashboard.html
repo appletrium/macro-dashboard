@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>매크로 대시보드 · 2026-08-10</title>
+<title>매크로 대시보드 · 2026-08-11</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, "Apple SD Gothic Neo", sans-serif;
@@ -73,7 +73,7 @@
     <h1>📊 매크로 지표 대시보드</h1>
     <div class="meta">날짜를 클릭하면 그날의 지표를 볼 수 있어요</div>
   </header>
-  <div class="datenav"><button class="chip active mon" id="chip112" onclick="showSnap(112)">08-10</button><button class="chip" id="chip111" onclick="showSnap(111)">08-07</button><button class="chip" id="chip110" onclick="showSnap(110)">08-06</button><button class="chip" id="chip109" onclick="showSnap(109)">08-05</button><button class="chip" id="chip108" onclick="showSnap(108)">08-04</button><button class="chip mon" id="chip107" onclick="showSnap(107)">08-03</button><button class="chip" id="chip106" onclick="showSnap(106)">07-31</button><button class="chip" id="chip105" onclick="showSnap(105)">07-30</button><button class="chip" id="chip104" onclick="showSnap(104)">07-29</button><button class="chip" id="chip103" onclick="showSnap(103)">07-28</button><button class="chip mon" id="chip102" onclick="showSnap(102)">07-27</button><button class="chip" id="chip101" onclick="showSnap(101)">07-24</button><button class="chip" id="chip100" onclick="showSnap(100)">07-23</button><button class="chip" id="chip99" onclick="showSnap(99)">07-22</button><button class="chip" id="chip98" onclick="showSnap(98)">07-21</button><button class="chip mon" id="chip97" onclick="showSnap(97)">07-20</button><button class="chip" id="chip96" onclick="showSnap(96)">07-17</button><button class="chip" id="chip95" onclick="showSnap(95)">07-16</button><button class="chip" id="chip94" onclick="showSnap(94)">07-15</button><button class="chip" id="chip93" onclick="showSnap(93)">07-14</button><button class="chip mon" id="chip92" onclick="showSnap(92)">07-13</button><button class="chip" id="chip91" onclick="showSnap(91)">07-10</button><button class="chip" id="chip90" onclick="showSnap(90)">07-08</button><button class="chip mon" id="chip89" onclick="showSnap(89)">07-06</button><button class="chip" id="chip88" onclick="showSnap(88)">07-02</button><button class="chip" id="chip87" onclick="showSnap(87)">07-01</button><button class="chip" id="chip86" onclick="showSnap(86)">06-30</button><button class="chip mon" id="chip85" onclick="showSnap(85)">06-29</button><button class="chip" id="chip84" onclick="showSnap(84)">06-26</button><button class="chip" id="chip83" onclick="showSnap(83)">06-25</button><button class="chip" id="chip82" onclick="showSnap(82)">06-24</button><button class="chip" id="chip81" onclick="showSnap(81)">06-23</button><button class="chip mon" id="chip80" onclick="showSnap(80)">06-22</button><button class="chip" id="chip79" onclick="showSnap(79)">06-18</button><button class="chip" id="chip78" onclick="showSnap(78)">06-17</button><button class="chip" id="chip77" onclick="showSnap(77)">06-16</button><button class="chip mon" id="chip76" onclick="showSnap(76)">06-15</button><button class="chip" id="chip75" onclick="showSnap(75)">06-12</button><button class="chip" id="chip74" onclick="showSnap(74)">06-11</button><button class="chip" id="chip73" onclick="showSnap(73)">06-10</button><button class="chip" id="chip72" onclick="showSnap(72)">06-09</button><button class="chip mon" id="chip71" onclick="showSnap(71)">06-08</button><button class="chip" id="chip70" onclick="showSnap(70)">06-05</button><button class="chip" id="chip69" onclick="showSnap(69)">06-04</button><button class="chip" id="chip68" onclick="showSnap(68)">06-03</button><button class="chip" id="chip67" onclick="showSnap(67)">06-02</button><button class="chip mon" id="chip66" onclick="showSnap(66)">06-01</button><button class="chip" id="chip65" onclick="showSnap(65)">05-29</button><button class="chip" id="chip64" onclick="showSnap(64)">05-28</button><button class="chip" id="chip63" onclick="showSnap(63)">05-27</button><button class="chip" id="chip62" onclick="showSnap(62)">05-26</button><button class="chip mon" id="chip61" onclick="showSnap(61)">05-25</button><button class="chip" id="chip60" onclick="showSnap(60)">05-22</button><button class="chip" id="chip59" onclick="showSnap(59)">05-21</button><button class="chip" id="chip58" onclick="showSnap(58)">05-20</button><button class="chip" id="chip57" onclick="showSnap(57)">05-19</button><button class="chip mon" id="chip56" onclick="showSnap(56)">05-18</button><button class="chip" id="chip55" onclick="showSnap(55)">05-15</button><button class="chip" id="chip54" onclick="showSnap(54)">05-14</button><button class="chip" id="chip53" onclick="showSnap(53)">05-13</button><button class="chip" id="chip52" onclick="showSnap(52)">05-12</button><button class="chip mon" id="chip51" onclick="showSnap(51)">05-11</button><button class="chip" id="chip50" onclick="showSnap(50)">05-08</button><button class="chip" id="chip49" onclick="showSnap(49)">05-07</button><button class="chip" id="chip48" onclick="showSnap(48)">05-06</button><button class="chip" id="chip47" onclick="showSnap(47)">05-05</button><button class="chip mon" id="chip46" onclick="showSnap(46)">05-04</button><button class="chip" id="chip45" onclick="showSnap(45)">05-01</button><button class="chip" id="chip44" onclick="showSnap(44)">04-30</button><button class="chip" id="chip43" onclick="showSnap(43)">04-29</button><button class="chip" id="chip42" onclick="showSnap(42)">04-28</button><button class="chip mon" id="chip41" onclick="showSnap(41)">04-27</button><button class="chip" id="chip40" onclick="showSnap(40)">04-24</button><button class="chip" id="chip39" onclick="showSnap(39)">04-23</button><button class="chip" id="chip38" onclick="showSnap(38)">04-22</button><button class="chip" id="chip37" onclick="showSnap(37)">04-21</button><button class="chip mon" id="chip36" onclick="showSnap(36)">04-20</button><button class="chip" id="chip35" onclick="showSnap(35)">04-17</button><button class="chip" id="chip34" onclick="showSnap(34)">04-16</button><button class="chip" id="chip33" onclick="showSnap(33)">04-15</button><button class="chip" id="chip32" onclick="showSnap(32)">04-14</button><button class="chip mon" id="chip31" onclick="showSnap(31)">04-13</button><button class="chip" id="chip30" onclick="showSnap(30)">04-10</button><button class="chip" id="chip29" onclick="showSnap(29)">04-09</button><button class="chip" id="chip28" onclick="showSnap(28)">04-08</button><button class="chip" id="chip27" onclick="showSnap(27)">04-07</button><button class="chip mon" id="chip26" onclick="showSnap(26)">04-06</button><button class="chip" id="chip25" onclick="showSnap(25)">04-03</button><button class="chip" id="chip24" onclick="showSnap(24)">04-02</button><button class="chip" id="chip23" onclick="showSnap(23)">04-01</button><button class="chip" id="chip22" onclick="showSnap(22)">03-31</button><button class="chip mon" id="chip21" onclick="showSnap(21)">03-30</button><button class="chip" id="chip20" onclick="showSnap(20)">03-27</button><button class="chip" id="chip19" onclick="showSnap(19)">03-26</button><button class="chip" id="chip18" onclick="showSnap(18)">03-25</button><button class="chip" id="chip17" onclick="showSnap(17)">03-24</button><button class="chip mon" id="chip16" onclick="showSnap(16)">03-23</button><button class="chip" id="chip15" onclick="showSnap(15)">03-20</button><button class="chip" id="chip14" onclick="showSnap(14)">03-19</button><button class="chip" id="chip13" onclick="showSnap(13)">03-18</button><button class="chip" id="chip12" onclick="showSnap(12)">03-17</button><button class="chip mon" id="chip11" onclick="showSnap(11)">03-16</button><button class="chip" id="chip10" onclick="showSnap(10)">03-13</button><button class="chip" id="chip9" onclick="showSnap(9)">03-12</button><button class="chip" id="chip8" onclick="showSnap(8)">03-11</button><button class="chip" id="chip7" onclick="showSnap(7)">03-10</button><button class="chip mon" id="chip6" onclick="showSnap(6)">03-09</button><button class="chip" id="chip5" onclick="showSnap(5)">03-06</button><button class="chip" id="chip4" onclick="showSnap(4)">03-05</button><button class="chip" id="chip3" onclick="showSnap(3)">03-04</button><button class="chip" id="chip2" onclick="showSnap(2)">03-03</button><button class="chip mon" id="chip1" onclick="showSnap(1)">03-02</button><button class="chip" id="chip0" onclick="showSnap(0)">02-27</button></div>
+  <div class="datenav"><button class="chip active" id="chip113" onclick="showSnap(113)">08-11</button><button class="chip mon" id="chip112" onclick="showSnap(112)">08-10</button><button class="chip" id="chip111" onclick="showSnap(111)">08-07</button><button class="chip" id="chip110" onclick="showSnap(110)">08-06</button><button class="chip" id="chip109" onclick="showSnap(109)">08-05</button><button class="chip" id="chip108" onclick="showSnap(108)">08-04</button><button class="chip mon" id="chip107" onclick="showSnap(107)">08-03</button><button class="chip" id="chip106" onclick="showSnap(106)">07-31</button><button class="chip" id="chip105" onclick="showSnap(105)">07-30</button><button class="chip" id="chip104" onclick="showSnap(104)">07-29</button><button class="chip" id="chip103" onclick="showSnap(103)">07-28</button><button class="chip mon" id="chip102" onclick="showSnap(102)">07-27</button><button class="chip" id="chip101" onclick="showSnap(101)">07-24</button><button class="chip" id="chip100" onclick="showSnap(100)">07-23</button><button class="chip" id="chip99" onclick="showSnap(99)">07-22</button><button class="chip" id="chip98" onclick="showSnap(98)">07-21</button><button class="chip mon" id="chip97" onclick="showSnap(97)">07-20</button><button class="chip" id="chip96" onclick="showSnap(96)">07-17</button><button class="chip" id="chip95" onclick="showSnap(95)">07-16</button><button class="chip" id="chip94" onclick="showSnap(94)">07-15</button><button class="chip" id="chip93" onclick="showSnap(93)">07-14</button><button class="chip mon" id="chip92" onclick="showSnap(92)">07-13</button><button class="chip" id="chip91" onclick="showSnap(91)">07-10</button><button class="chip" id="chip90" onclick="showSnap(90)">07-08</button><button class="chip mon" id="chip89" onclick="showSnap(89)">07-06</button><button class="chip" id="chip88" onclick="showSnap(88)">07-02</button><button class="chip" id="chip87" onclick="showSnap(87)">07-01</button><button class="chip" id="chip86" onclick="showSnap(86)">06-30</button><button class="chip mon" id="chip85" onclick="showSnap(85)">06-29</button><button class="chip" id="chip84" onclick="showSnap(84)">06-26</button><button class="chip" id="chip83" onclick="showSnap(83)">06-25</button><button class="chip" id="chip82" onclick="showSnap(82)">06-24</button><button class="chip" id="chip81" onclick="showSnap(81)">06-23</button><button class="chip mon" id="chip80" onclick="showSnap(80)">06-22</button><button class="chip" id="chip79" onclick="showSnap(79)">06-18</button><button class="chip" id="chip78" onclick="showSnap(78)">06-17</button><button class="chip" id="chip77" onclick="showSnap(77)">06-16</button><button class="chip mon" id="chip76" onclick="showSnap(76)">06-15</button><button class="chip" id="chip75" onclick="showSnap(75)">06-12</button><button class="chip" id="chip74" onclick="showSnap(74)">06-11</button><button class="chip" id="chip73" onclick="showSnap(73)">06-10</button><button class="chip" id="chip72" onclick="showSnap(72)">06-09</button><button class="chip mon" id="chip71" onclick="showSnap(71)">06-08</button><button class="chip" id="chip70" onclick="showSnap(70)">06-05</button><button class="chip" id="chip69" onclick="showSnap(69)">06-04</button><button class="chip" id="chip68" onclick="showSnap(68)">06-03</button><button class="chip" id="chip67" onclick="showSnap(67)">06-02</button><button class="chip mon" id="chip66" onclick="showSnap(66)">06-01</button><button class="chip" id="chip65" onclick="showSnap(65)">05-29</button><button class="chip" id="chip64" onclick="showSnap(64)">05-28</button><button class="chip" id="chip63" onclick="showSnap(63)">05-27</button><button class="chip" id="chip62" onclick="showSnap(62)">05-26</button><button class="chip mon" id="chip61" onclick="showSnap(61)">05-25</button><button class="chip" id="chip60" onclick="showSnap(60)">05-22</button><button class="chip" id="chip59" onclick="showSnap(59)">05-21</button><button class="chip" id="chip58" onclick="showSnap(58)">05-20</button><button class="chip" id="chip57" onclick="showSnap(57)">05-19</button><button class="chip mon" id="chip56" onclick="showSnap(56)">05-18</button><button class="chip" id="chip55" onclick="showSnap(55)">05-15</button><button class="chip" id="chip54" onclick="showSnap(54)">05-14</button><button class="chip" id="chip53" onclick="showSnap(53)">05-13</button><button class="chip" id="chip52" onclick="showSnap(52)">05-12</button><button class="chip mon" id="chip51" onclick="showSnap(51)">05-11</button><button class="chip" id="chip50" onclick="showSnap(50)">05-08</button><button class="chip" id="chip49" onclick="showSnap(49)">05-07</button><button class="chip" id="chip48" onclick="showSnap(48)">05-06</button><button class="chip" id="chip47" onclick="showSnap(47)">05-05</button><button class="chip mon" id="chip46" onclick="showSnap(46)">05-04</button><button class="chip" id="chip45" onclick="showSnap(45)">05-01</button><button class="chip" id="chip44" onclick="showSnap(44)">04-30</button><button class="chip" id="chip43" onclick="showSnap(43)">04-29</button><button class="chip" id="chip42" onclick="showSnap(42)">04-28</button><button class="chip mon" id="chip41" onclick="showSnap(41)">04-27</button><button class="chip" id="chip40" onclick="showSnap(40)">04-24</button><button class="chip" id="chip39" onclick="showSnap(39)">04-23</button><button class="chip" id="chip38" onclick="showSnap(38)">04-22</button><button class="chip" id="chip37" onclick="showSnap(37)">04-21</button><button class="chip mon" id="chip36" onclick="showSnap(36)">04-20</button><button class="chip" id="chip35" onclick="showSnap(35)">04-17</button><button class="chip" id="chip34" onclick="showSnap(34)">04-16</button><button class="chip" id="chip33" onclick="showSnap(33)">04-15</button><button class="chip" id="chip32" onclick="showSnap(32)">04-14</button><button class="chip mon" id="chip31" onclick="showSnap(31)">04-13</button><button class="chip" id="chip30" onclick="showSnap(30)">04-10</button><button class="chip" id="chip29" onclick="showSnap(29)">04-09</button><button class="chip" id="chip28" onclick="showSnap(28)">04-08</button><button class="chip" id="chip27" onclick="showSnap(27)">04-07</button><button class="chip mon" id="chip26" onclick="showSnap(26)">04-06</button><button class="chip" id="chip25" onclick="showSnap(25)">04-03</button><button class="chip" id="chip24" onclick="showSnap(24)">04-02</button><button class="chip" id="chip23" onclick="showSnap(23)">04-01</button><button class="chip" id="chip22" onclick="showSnap(22)">03-31</button><button class="chip mon" id="chip21" onclick="showSnap(21)">03-30</button><button class="chip" id="chip20" onclick="showSnap(20)">03-27</button><button class="chip" id="chip19" onclick="showSnap(19)">03-26</button><button class="chip" id="chip18" onclick="showSnap(18)">03-25</button><button class="chip" id="chip17" onclick="showSnap(17)">03-24</button><button class="chip mon" id="chip16" onclick="showSnap(16)">03-23</button><button class="chip" id="chip15" onclick="showSnap(15)">03-20</button><button class="chip" id="chip14" onclick="showSnap(14)">03-19</button><button class="chip" id="chip13" onclick="showSnap(13)">03-18</button><button class="chip" id="chip12" onclick="showSnap(12)">03-17</button><button class="chip mon" id="chip11" onclick="showSnap(11)">03-16</button><button class="chip" id="chip10" onclick="showSnap(10)">03-13</button><button class="chip" id="chip9" onclick="showSnap(9)">03-12</button><button class="chip" id="chip8" onclick="showSnap(8)">03-11</button><button class="chip" id="chip7" onclick="showSnap(7)">03-10</button><button class="chip mon" id="chip6" onclick="showSnap(6)">03-09</button><button class="chip" id="chip5" onclick="showSnap(5)">03-06</button><button class="chip" id="chip4" onclick="showSnap(4)">03-05</button><button class="chip" id="chip3" onclick="showSnap(3)">03-04</button><button class="chip" id="chip2" onclick="showSnap(2)">03-03</button><button class="chip mon" id="chip1" onclick="showSnap(1)">03-02</button><button class="chip" id="chip0" onclick="showSnap(0)">02-27</button></div>
   <div class="snap" id="snap0" style="display:none"><div class="snapmeta">📅 2026-02-27 <span class="snapsub">(미국 장 마감 종가 기준)</span></div><section class="grp grp-1">
         <div class="grp-head"><h2>시장 심리</h2><p>시장의 위험 선호·분위기를 읽는 지표</p></div>
         <div class="grid"><div class="card">
@@ -25162,16 +25162,16 @@
           <div class="sec-chg">-1.13%</div>
           <div class="sec-nm">에너지</div>
         </div></div>
-      </section></div><div class="snap" id="snap112" style="display:block"><div class="snapmeta">📅 2026-08-10 <span class="snapsub">(미국 장 마감 종가 기준)</span></div><section class="grp grp-1">
+      </section></div><div class="snap" id="snap112" style="display:none"><div class="snapmeta">📅 2026-08-10 <span class="snapsub">(미국 장 마감 종가 기준)</span></div><section class="grp grp-1">
         <div class="grp-head"><h2>시장 심리</h2><p>시장의 위험 선호·분위기를 읽는 지표</p></div>
         <div class="grid"><div class="card">
         <div class="card-top">
           <div><div class="cat">변동성</div><div class="name">VIX 공포지수</div></div>
-          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,5.5 1.9,7.0 3.7,9.4 5.6,13.2 7.4,12.7 9.3,14.1 11.2,15.9 13.0,11.8 14.9,17.6 16.8,10.9 18.6,13.0 20.5,15.6 22.3,12.3 24.2,5.9 26.1,6.3 27.9,11.3 29.8,12.6 31.7,6.1 33.5,6.5 35.4,6.2 37.2,7.7 39.1,0.0 41.0,11.2 42.8,14.6 44.7,15.0 46.6,13.0 48.4,15.2 50.3,17.2 52.1,18.0 54.0,18.0"/></svg></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,5.5 1.9,7.0 3.7,9.4 5.6,13.2 7.4,12.7 9.3,14.1 11.2,15.9 13.0,11.8 14.9,17.6 16.8,10.9 18.6,13.0 20.5,15.6 22.3,12.3 24.2,5.9 26.1,6.3 27.9,11.3 29.8,12.6 31.7,6.1 33.5,6.5 35.4,6.2 37.2,7.7 39.1,0.0 41.0,11.2 42.8,14.6 44.7,15.0 46.6,13.0 48.4,15.2 50.3,17.2 52.1,18.0 54.0,16.2"/></svg></div>
         </div>
-        <div class="value">14.90</div>
-        <div class="row"><span class="chg good">▼ 1.65%</span><span class="lbl">전일</span></div>
-        <div class="trends"><div class="mini"><span>1주</span><b class="good">-6.1%</b></div><div class="mini"><span>1개월</span><b class="good">-0.9%</b></div><div class="mini"><span>60일</span><b class="good">-23.4%</b></div><div class="mini"><span>90일</span><b class="good">-17.2%</b></div></div>
+        <div class="value">15.46</div>
+        <div class="row"><span class="chg bad">▲ 3.76%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">-2.5%</b></div><div class="mini"><span>1개월</span><b class="bad">+2.9%</b></div><div class="mini"><span>60일</span><b class="good">-20.5%</b></div><div class="mini"><span>90일</span><b class="good">-14.1%</b></div></div>
       </div><div class="card">
         <div class="card-top">
           <div><div class="cat">심리지표</div><div class="name">공포·탐욕 지수</div></div>
@@ -25210,19 +25210,19 @@
         <div class="grid"><div class="card">
         <div class="card-top">
           <div><div class="cat">미국 증시</div><div class="name">S&P 500</div></div>
-          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,16.3 1.9,16.5 3.7,12.9 5.6,10.5 7.4,11.2 9.3,11.2 11.2,9.0 13.0,11.2 14.9,7.4 16.8,9.9 18.6,8.7 20.5,7.6 22.3,9.1 24.2,12.2 26.1,12.8 27.9,10.1 29.8,10.5 31.7,14.2 33.5,14.1 35.4,14.0 37.2,13.4 39.1,18.0 41.0,13.0 42.8,10.9 44.7,6.4 46.6,0.9 48.4,1.4 50.3,1.9 52.1,0.0 54.0,0.0"/></svg></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,16.3 1.9,16.5 3.7,12.9 5.6,10.5 7.4,11.2 9.3,11.2 11.2,9.0 13.0,11.2 14.9,7.4 16.8,9.9 18.6,8.7 20.5,7.6 22.3,9.1 24.2,12.2 26.1,12.8 27.9,10.1 29.8,10.5 31.7,14.2 33.5,14.1 35.4,14.0 37.2,13.4 39.1,18.0 41.0,13.0 42.8,10.9 44.7,6.4 46.6,0.9 48.4,1.4 50.3,1.9 52.1,0.0 54.0,0.2"/></svg></div>
         </div>
-        <div class="value">7,758</div>
-        <div class="row"><span class="chg good">▲ 0.62%</span><span class="lbl">전일</span></div>
-        <div class="trends"><div class="mini"><span>1주</span><b class="good">+2.1%</b></div><div class="mini"><span>1개월</span><b class="good">+2.4%</b></div><div class="mini"><span>60일</span><b class="good">+4.9%</b></div><div class="mini"><span>90일</span><b class="good">+4.8%</b></div></div>
+        <div class="value">7,753</div>
+        <div class="row"><span class="chg bad">▼ 0.06%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+2.0%</b></div><div class="mini"><span>1개월</span><b class="good">+2.3%</b></div><div class="mini"><span>60일</span><b class="good">+4.9%</b></div><div class="mini"><span>90일</span><b class="good">+4.8%</b></div></div>
       </div><div class="card">
         <div class="card-top">
           <div><div class="cat">미국 증시</div><div class="name">나스닥</div></div>
-          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,10.7 1.9,11.2 3.7,7.0 5.6,3.8 7.4,5.2 9.3,6.9 11.2,4.6 13.0,6.6 14.9,3.3 16.8,6.5 18.6,4.7 20.5,3.4 22.3,6.5 24.2,9.4 26.1,9.5 27.9,6.8 29.8,8.0 31.7,12.4 33.5,13.7 35.4,14.1 37.2,14.5 39.1,18.0 41.0,12.6 42.8,10.5 44.7,6.2 46.6,0.8 48.4,2.6 50.3,2.7 52.1,0.0 54.0,0.0"/></svg></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,10.7 1.9,11.2 3.7,7.0 5.6,3.8 7.4,5.2 9.3,6.9 11.2,4.6 13.0,6.6 14.9,3.3 16.8,6.5 18.6,4.7 20.5,3.4 22.3,6.5 24.2,9.4 26.1,9.5 27.9,6.8 29.8,8.0 31.7,12.4 33.5,13.7 35.4,14.1 37.2,14.5 39.1,18.0 41.0,12.6 42.8,10.5 44.7,6.2 46.6,0.8 48.4,2.6 50.3,2.7 52.1,0.0 54.0,0.7"/></svg></div>
         </div>
-        <div class="value">26,691</div>
-        <div class="row"><span class="chg good">▲ 1.30%</span><span class="lbl">전일</span></div>
-        <div class="trends"><div class="mini"><span>1주</span><b class="good">+3.0%</b></div><div class="mini"><span>1개월</span><b class="good">+1.6%</b></div><div class="mini"><span>60일</span><b class="good">+3.4%</b></div><div class="mini"><span>90일</span><b class="good">+2.3%</b></div></div>
+        <div class="value">26,605</div>
+        <div class="row"><span class="chg bad">▼ 0.32%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+2.7%</b></div><div class="mini"><span>1개월</span><b class="good">+1.2%</b></div><div class="mini"><span>60일</span><b class="good">+3.1%</b></div><div class="mini"><span>90일</span><b class="good">+2.0%</b></div></div>
       </div><div class="card">
         <div class="card-top">
           <div><div class="cat">한국 증시</div><div class="name">코스피</div></div>
@@ -25317,11 +25317,11 @@
       </div><div class="card">
         <div class="card-top">
           <div><div class="cat">금리</div><div class="name">SOFR</div></div>
-          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,5.5 1.9,8.3 3.7,8.3 5.6,0.0 7.4,2.8 9.3,5.5 11.2,6.9 13.0,13.8 14.9,18.0 16.8,11.1 18.6,6.9 20.5,5.5 22.3,8.3 24.2,12.5 26.1,15.2 27.9,9.7 29.8,8.3 31.7,5.5 33.5,5.5 35.4,5.5 37.2,4.2 39.1,4.2 41.0,4.2 42.8,2.8 44.7,4.2 46.6,2.8 48.4,5.5 50.3,4.2 52.1,8.3 54.0,8.3"/></svg></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,5.5 1.9,8.3 3.7,8.3 5.6,0.0 7.4,2.8 9.3,5.5 11.2,6.9 13.0,13.8 14.9,18.0 16.8,11.1 18.6,6.9 20.5,5.5 22.3,8.3 24.2,12.5 26.1,15.2 27.9,9.7 29.8,8.3 31.7,5.5 33.5,5.5 35.4,5.5 37.2,4.2 39.1,4.2 41.0,4.2 42.8,2.8 44.7,4.2 46.6,2.8 48.4,5.5 50.3,4.2 52.1,8.3 54.0,6.9"/></svg></div>
         </div>
-        <div class="value">3.62%</div>
-        <div class="row"><span class="chg bad">▼ 0.82%</span><span class="lbl">전일</span></div>
-        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-0.8%</b></div><div class="mini"><span>1개월</span><b class="good">+2.0%</b></div><div class="mini"><span>60일</span><b class="good">+0.6%</b></div><div class="mini"><span>90일</span><b class="good">+0.6%</b></div></div>
+        <div class="value">3.63%</div>
+        <div class="row"><span class="chg good">▲ 0.28%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-0.5%</b></div><div class="mini"><span>1개월</span><b class="good">+2.3%</b></div><div class="mini"><span>60일</span><b class="good">+0.8%</b></div><div class="mini"><span>90일</span><b class="good">+0.8%</b></div></div>
       </div><div class="card">
         <div class="card-top">
           <div><div class="cat">유동성</div><div class="name">Fed Balance</div></div>
@@ -25384,6 +25384,230 @@
         </div><div class="sec" style="--wt:1.29;background:rgba(255,80,80,0.46)" title="리츠 (XLRE)">
           <div class="sec-tk">XLRE</div>
           <div class="sec-chg">-1.29%</div>
+          <div class="sec-nm">리츠</div>
+        </div></div>
+      </section></div><div class="snap" id="snap113" style="display:block"><div class="snapmeta">📅 2026-08-11 <span class="snapsub">(미국 장 마감 종가 기준)</span></div><section class="grp grp-1">
+        <div class="grp-head"><h2>시장 심리</h2><p>시장의 위험 선호·분위기를 읽는 지표</p></div>
+        <div class="grid"><div class="card">
+        <div class="card-top">
+          <div><div class="cat">변동성</div><div class="name">VIX 공포지수</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,7.0 1.9,9.4 3.7,13.2 5.6,12.7 7.4,14.1 9.3,15.9 11.2,11.8 13.0,17.6 14.9,10.9 16.8,13.0 18.6,15.6 20.5,12.3 22.3,5.9 24.2,6.3 26.1,11.3 27.9,12.6 29.8,6.1 31.7,6.5 33.5,6.2 35.4,7.7 37.2,0.0 39.1,11.2 41.0,14.6 42.8,15.0 44.7,13.0 46.6,15.2 48.4,17.2 50.3,18.0 52.1,16.2 54.0,16.2"/></svg></div>
+        </div>
+        <div class="value">15.46</div>
+        <div class="row"><span class="chg bad">▲ 3.76%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">-6.3%</b></div><div class="mini"><span>1개월</span><b class="bad">+2.9%</b></div><div class="mini"><span>60일</span><b class="good">-12.6%</b></div><div class="mini"><span>90일</span><b class="good">-13.5%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">심리지표</div><div class="name">공포·탐욕 지수</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,17.0 3.7,15.1 5.6,14.8 7.4,14.8 9.3,9.7 11.2,7.8 13.0,6.8 14.9,9.4 16.8,9.7 18.6,8.2 20.5,10.3 22.3,12.4 24.2,12.2 26.1,10.6 27.9,9.8 29.8,11.3 31.7,11.4 33.5,11.1 35.4,11.8 37.2,14.6 39.1,11.6 41.0,10.0 42.8,8.5 44.7,2.9 46.6,2.1 48.4,2.1 50.3,0.3 52.1,0.0 54.0,1.6"/></svg></div>
+        </div>
+        <div class="value">60.80</div>
+        <div class="row"><span class="chg bad">▼ 5.59%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+4.6%</b></div><div class="mini"><span>1개월</span><b class="good">+22.8%</b></div><div class="mini"><span>60일</span><b class="good">+44.8%</b></div><div class="mini"><span>90일</span><b class="bad">-6.5%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">환율</div><div class="name">달러 인덱스</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,1.5 1.9,4.0 3.7,3.2 5.6,1.1 7.4,5.9 9.3,3.7 11.2,5.8 13.0,3.5 14.9,2.1 16.8,5.6 18.6,9.8 20.5,7.6 22.3,6.4 24.2,5.1 26.1,3.0 27.9,3.7 29.8,0.9 31.7,1.9 33.5,0.0 35.4,0.8 37.2,7.0 39.1,14.3 41.0,17.7 42.8,14.6 44.7,15.7 46.6,17.5 48.4,14.8 50.3,18.0 52.1,16.3 54.0,16.3"/></svg></div>
+        </div>
+        <div class="value">99.81</div>
+        <div class="row"><span class="chg good">▲ 0.01%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-0.1%</b></div><div class="mini"><span>1개월</span><b class="bad">-1.3%</b></div><div class="mini"><span>60일</span><b class="good">+0.2%</b></div><div class="mini"><span>90일</span><b class="good">+1.3%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">경기신호</div><div class="name">장단기 금리차(10Y-2Y)</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,15.3 1.9,18.0 3.7,16.2 5.6,15.3 7.4,11.7 9.3,11.7 11.2,11.7 13.0,11.7 14.9,10.8 16.8,7.2 18.6,5.4 20.5,6.3 22.3,9.9 24.2,8.1 26.1,9.9 27.9,10.8 29.8,12.6 31.7,10.8 33.5,12.6 35.4,11.7 37.2,2.7 39.1,2.7 41.0,0.9 42.8,2.7 44.7,4.5 46.6,2.7 48.4,3.6 50.3,1.8 52.1,0.9 54.0,0.0"/></svg></div>
+        </div>
+        <div class="value">0.4800%p</div>
+        <div class="row"><span class="chg good">▲ 2.13%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+11.6%</b></div><div class="mini"><span>1개월</span><b class="good">+37.1%</b></div><div class="mini"><span>60일</span><b class="good">+23.1%</b></div><div class="mini"><span>90일</span><b class="flat">+0.0%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">유동성</div><div class="name">M2 통화량</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,18.0 3.7,18.0 5.6,18.0 7.4,18.0 9.3,18.0 11.2,18.0 13.0,18.0 14.9,18.0 16.8,18.0 18.6,18.0 20.5,18.0 22.3,18.0 24.2,18.0 26.1,18.0 27.9,18.0 29.8,18.0 31.7,18.0 33.5,18.0 35.4,0.0 37.2,0.0 39.1,0.0 41.0,0.0 42.8,0.0 44.7,0.0 46.6,0.0 48.4,0.0 50.3,0.0 52.1,0.0 54.0,0.0"/></svg></div>
+        </div>
+        <div class="value">23,155B</div>
+        <div class="row"><span class="chg good">▲ 0.43%</span><span class="lbl">전월</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="flat">+0.0%</b></div><div class="mini"><span>1개월</span><b class="good">+0.4%</b></div><div class="mini"><span>60일</span><b class="good">+1.5%</b></div><div class="mini"><span>90일</span><b class="good">+2.1%</b></div></div>
+      </div></div>
+      </section><section class="grp grp-2">
+        <div class="grp-head"><h2>주요 자산</h2><p>증시·환율·원자재·암호화폐 대표 종목</p></div>
+        <div class="grid"><div class="card">
+        <div class="card-top">
+          <div><div class="cat">미국 증시</div><div class="name">S&P 500</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,16.5 1.9,12.9 3.7,10.5 5.6,11.2 7.4,11.2 9.3,9.0 11.2,11.2 13.0,7.4 14.9,9.9 16.8,8.7 18.6,7.6 20.5,9.1 22.3,12.2 24.2,12.8 26.1,10.1 27.9,10.5 29.8,14.2 31.7,14.1 33.5,14.0 35.4,13.4 37.2,18.0 39.1,13.0 41.0,10.9 42.8,6.4 44.7,0.9 46.6,1.4 48.4,1.9 50.3,0.0 52.1,0.2 54.0,0.2"/></svg></div>
+        </div>
+        <div class="value">7,753</div>
+        <div class="row"><span class="chg bad">▼ 0.06%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+0.2%</b></div><div class="mini"><span>1개월</span><b class="good">+2.3%</b></div><div class="mini"><span>60일</span><b class="good">+4.3%</b></div><div class="mini"><span>90일</span><b class="good">+4.1%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">미국 증시</div><div class="name">나스닥</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,11.2 1.9,7.0 3.7,3.8 5.6,5.2 7.4,6.9 9.3,4.6 11.2,6.6 13.0,3.3 14.9,6.5 16.8,4.7 18.6,3.4 20.5,6.5 22.3,9.4 24.2,9.5 26.1,6.8 27.9,8.0 29.8,12.4 31.7,13.7 33.5,14.1 35.4,14.5 37.2,18.0 39.1,12.6 41.0,10.5 42.8,6.2 44.7,0.8 46.6,2.6 48.4,2.7 50.3,0.0 52.1,0.7 54.0,0.7"/></svg></div>
+        </div>
+        <div class="value">26,605</div>
+        <div class="row"><span class="chg bad">▼ 0.32%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+0.1%</b></div><div class="mini"><span>1개월</span><b class="good">+1.2%</b></div><div class="mini"><span>60일</span><b class="good">+2.8%</b></div><div class="mini"><span>90일</span><b class="good">+0.8%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">한국 증시</div><div class="name">코스피</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,0.4 1.9,0.5 3.7,0.0 5.6,1.1 7.4,5.2 9.3,2.7 11.2,7.7 13.0,6.2 14.9,10.4 16.8,10.1 18.6,7.4 20.5,10.3 22.3,10.3 24.2,12.2 26.1,10.8 27.9,10.5 29.8,8.6 31.7,11.2 33.5,10.7 35.4,15.3 37.2,17.6 39.1,18.0 41.0,11.7 42.8,13.9 44.7,13.2 46.6,11.7 48.4,13.6 50.3,13.8 52.1,13.6 54.0,13.3"/></svg></div>
+        </div>
+        <div class="value">6,346</div>
+        <div class="row"><span class="chg good">▲ 0.73%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-0.2%</b></div><div class="mini"><span>1개월</span><b class="bad">-15.1%</b></div><div class="mini"><span>60일</span><b class="bad">-21.9%</b></div><div class="mini"><span>90일</span><b class="bad">-19.1%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">원자재</div><div class="name">금</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,14.0 1.9,16.4 3.7,16.4 5.6,15.5 7.4,8.9 9.3,12.7 11.2,11.7 13.0,13.7 14.9,17.0 16.8,14.9 18.6,14.4 20.5,18.0 22.3,17.2 24.2,16.9 26.1,13.6 27.9,12.0 29.8,14.9 31.7,13.1 33.5,13.9 35.4,16.3 37.2,13.2 39.1,12.3 41.0,14.3 42.8,14.8 44.7,14.1 46.6,6.2 48.4,6.4 50.3,2.2 52.1,0.0 54.0,0.7"/></svg></div>
+        </div>
+        <div class="value">4,377</div>
+        <div class="row"><span class="chg bad">▼ 0.38%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+7.6%</b></div><div class="mini"><span>1개월</span><b class="good">+7.4%</b></div><div class="mini"><span>60일</span><b class="good">+1.3%</b></div><div class="mini"><span>90일</span><b class="bad">-6.6%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">원자재</div><div class="name">WTI 유가</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,17.5 1.9,16.3 3.7,17.3 5.6,17.9 7.4,17.9 9.3,18.0 11.2,14.2 13.0,15.8 14.9,10.6 16.8,10.6 18.6,9.5 20.5,10.0 22.3,7.4 24.2,6.7 26.1,6.7 27.9,4.2 29.8,0.0 31.7,1.0 33.5,6.8 35.4,6.8 37.2,5.4 39.1,6.1 41.0,5.3 42.8,8.5 44.7,8.5 46.6,8.5 48.4,8.5 50.3,8.5 52.1,8.5 54.0,8.5"/></svg></div>
+        </div>
+        <div class="value">81.96</div>
+        <div class="row"><span class="chg bad">▼ 4.87%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="flat">+0.0%</b></div><div class="mini"><span>1개월</span><b class="good">+13.1%</b></div><div class="mini"><span>60일</span><b class="bad">-7.5%</b></div><div class="mini"><span>90일</span><b class="bad">-18.9%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">환율</div><div class="name">달러/원 환율</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,2.2 1.9,1.4 3.7,0.8 5.6,0.0 7.4,2.9 9.3,4.8 11.2,5.8 13.0,6.6 14.9,7.2 16.8,7.9 18.6,8.2 20.5,9.2 22.3,8.0 24.2,9.6 26.1,9.0 27.9,9.4 29.8,9.7 31.7,11.6 33.5,10.9 35.4,12.3 37.2,13.5 39.1,16.3 41.0,14.0 42.8,15.3 44.7,15.3 46.6,16.2 48.4,16.4 50.3,18.0 52.1,16.7 54.0,17.4"/></svg></div>
+        </div>
+        <div class="value">1,412</div>
+        <div class="row"><span class="chg bad">▼ 0.40%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-1.2%</b></div><div class="mini"><span>1개월</span><b class="bad">-5.8%</b></div><div class="mini"><span>60일</span><b class="bad">-6.7%</b></div><div class="mini"><span>90일</span><b class="bad">-5.4%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">암호화폐</div><div class="name">비트코인</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,16.3 1.9,13.9 3.7,18.0 5.6,14.0 7.4,5.8 9.3,6.1 11.2,7.4 13.0,5.5 14.9,10.3 16.8,3.4 18.6,3.1 20.5,5.4 22.3,3.7 24.2,2.5 26.1,0.0 27.9,0.4 29.8,2.5 31.7,2.1 33.5,6.1 35.4,6.1 37.2,5.5 39.1,3.1 41.0,6.7 42.8,6.3 44.7,4.4 46.6,3.8 48.4,4.3 50.3,2.9 52.1,5.3 54.0,6.2"/></svg></div>
+        </div>
+        <div class="value">63,573</div>
+        <div class="row"><span class="chg bad">▼ 0.54%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-1.1%</b></div><div class="mini"><span>1개월</span><b class="bad">-0.5%</b></div><div class="mini"><span>60일</span><b class="bad">-4.9%</b></div><div class="mini"><span>90일</span><b class="bad">-21.0%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">암호화폐</div><div class="name">이더리움</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,15.7 3.7,17.8 5.6,15.5 7.4,7.2 9.3,7.9 11.2,9.6 13.0,6.7 14.9,9.0 16.8,3.2 18.6,1.1 20.5,3.8 22.3,3.7 24.2,2.4 26.1,1.4 27.9,0.6 29.8,3.1 31.7,0.0 33.5,3.0 35.4,2.0 37.2,2.2 39.1,1.0 41.0,3.2 42.8,4.3 44.7,3.4 46.6,2.0 48.4,2.1 50.3,1.4 52.1,3.5 54.0,3.3"/></svg></div>
+        </div>
+        <div class="value">1,878</div>
+        <div class="row"><span class="chg good">▲ 0.32%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+0.2%</b></div><div class="mini"><span>1개월</span><b class="good">+4.1%</b></div><div class="mini"><span>60일</span><b class="good">+2.7%</b></div><div class="mini"><span>90일</span><b class="bad">-17.4%</b></div></div>
+      </div></div>
+      </section><section class="grp grp-3">
+        <div class="grp-head"><h2>미국 매크로 경제지표</h2><p>금리·물가·고용·유동성 등 경제 펀더멘털</p></div>
+        <div class="grid"><div class="card">
+        <div class="card-top">
+          <div><div class="cat">금리</div><div class="name">미국 10년물 금리</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,18.0 3.7,15.1 5.6,13.1 7.4,12.6 9.3,13.1 11.2,9.2 13.0,9.2 14.9,6.3 16.8,8.3 18.6,9.7 20.5,8.8 22.3,9.7 24.2,7.3 26.1,5.8 27.9,3.9 29.8,1.9 31.7,2.9 33.5,4.9 35.4,6.8 37.2,3.9 39.1,3.4 41.0,0.0 42.8,2.4 44.7,5.8 46.6,5.8 48.4,2.9 50.3,4.9 52.1,1.5 54.0,2.4"/></svg></div>
+        </div>
+        <div class="value">4.70%</div>
+        <div class="row"><span class="chg bad">▼ 0.42%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+1.5%</b></div><div class="mini"><span>1개월</span><b class="good">+3.1%</b></div><div class="mini"><span>60일</span><b class="good">+4.9%</b></div><div class="mini"><span>90일</span><b class="good">+5.4%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">금리</div><div class="name">미국 2년물 금리</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,16.2 3.7,13.8 5.6,12.0 7.4,13.8 9.3,14.4 11.2,9.6 13.0,9.6 14.9,6.6 16.8,11.4 18.6,14.4 20.5,12.6 22.3,11.4 24.2,9.6 26.1,6.6 27.9,3.6 29.8,0.0 31.7,2.4 33.5,3.6 35.4,6.6 37.2,9.0 39.1,8.4 41.0,5.4 42.8,7.2 44.7,10.2 46.6,11.4 48.4,7.2 50.3,10.8 52.1,7.2 54.0,9.0"/></svg></div>
+        </div>
+        <div class="value">4.22%</div>
+        <div class="row"><span class="chg bad">▼ 0.71%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+0.5%</b></div><div class="mini"><span>1개월</span><b class="good">+0.2%</b></div><div class="mini"><span>60일</span><b class="good">+3.2%</b></div><div class="mini"><span>90일</span><b class="good">+6.0%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">인플레이션</div><div class="name">소비자물가(CPI)</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,0.0 1.9,0.0 3.7,0.0 5.6,0.0 7.4,0.0 9.3,0.0 11.2,0.0 13.0,0.0 14.9,0.0 16.8,0.0 18.6,18.0 20.5,18.0 22.3,18.0 24.2,18.0 26.1,18.0 27.9,18.0 29.8,18.0 31.7,18.0 33.5,18.0 35.4,18.0 37.2,18.0 39.1,18.0 41.0,18.0 42.8,18.0 44.7,18.0 46.6,18.0 48.4,18.0 50.3,18.0 52.1,18.0 54.0,18.0"/></svg></div>
+        </div>
+        <div class="value">332.57</div>
+        <div class="row"><span class="chg bad">▼ 0.42%</span><span class="lbl">전월</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="flat">+0.0%</b></div><div class="mini"><span>1개월</span><b class="bad">-0.4%</b></div><div class="mini"><span>60일</span><b class="bad">-0.4%</b></div><div class="mini"><span>90일</span><b class="good">+0.0%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">고용</div><div class="name">실업률</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,0.0 1.9,0.0 3.7,0.0 5.6,0.0 7.4,9.0 9.3,9.0 11.2,9.0 13.0,9.0 14.9,9.0 16.8,9.0 18.6,9.0 20.5,9.0 22.3,9.0 24.2,9.0 26.1,9.0 27.9,9.0 29.8,9.0 31.7,9.0 33.5,9.0 35.4,9.0 37.2,9.0 39.1,9.0 41.0,9.0 42.8,9.0 44.7,9.0 46.6,9.0 48.4,9.0 50.3,18.0 52.1,18.0 54.0,18.0"/></svg></div>
+        </div>
+        <div class="value">4.10%</div>
+        <div class="row"><span class="chg good">▼ 2.38%</span><span class="lbl">전월</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">-2.4%</b></div><div class="mini"><span>1개월</span><b class="good">-2.4%</b></div><div class="mini"><span>60일</span><b class="good">-4.7%</b></div><div class="mini"><span>90일</span><b class="good">-4.7%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">금리</div><div class="name">기준금리(Fed)</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,18.0 1.9,18.0 3.7,18.0 5.6,18.0 7.4,18.0 9.3,18.0 11.2,18.0 13.0,18.0 14.9,18.0 16.8,18.0 18.6,18.0 20.5,18.0 22.3,18.0 24.2,18.0 26.1,18.0 27.9,18.0 29.8,18.0 31.7,18.0 33.5,18.0 35.4,18.0 37.2,18.0 39.1,18.0 41.0,18.0 42.8,18.0 44.7,18.0 46.6,18.0 48.4,18.0 50.3,18.0 52.1,18.0 54.0,18.0"/></svg></div>
+        </div>
+        <div class="value">3.63%</div>
+        <div class="row"><span class="chg flat">■ 0.00%</span><span class="lbl">전월</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="flat">+0.0%</b></div><div class="mini"><span>1개월</span><b class="flat">+0.0%</b></div><div class="mini"><span>60일</span><b class="flat">+0.0%</b></div><div class="mini"><span>90일</span><b class="bad">-0.3%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">금리</div><div class="name">SOFR</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,8.3 1.9,8.3 3.7,0.0 5.6,2.8 7.4,5.5 9.3,6.9 11.2,13.8 13.0,18.0 14.9,11.1 16.8,6.9 18.6,5.5 20.5,8.3 22.3,12.5 24.2,15.2 26.1,9.7 27.9,8.3 29.8,5.5 31.7,5.5 33.5,5.5 35.4,4.2 37.2,4.2 39.1,4.2 41.0,2.8 42.8,4.2 44.7,2.8 46.6,5.5 48.4,4.2 50.3,8.3 52.1,6.9 54.0,6.9"/></svg></div>
+        </div>
+        <div class="value">3.63%</div>
+        <div class="row"><span class="chg good">▲ 0.28%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-0.8%</b></div><div class="mini"><span>1개월</span><b class="good">+2.3%</b></div><div class="mini"><span>60일</span><b class="bad">-0.5%</b></div><div class="mini"><span>90일</span><b class="good">+0.8%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">유동성</div><div class="name">Fed Balance</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#16a34a" stroke-width="1.6" points="0.0,9.7 1.9,9.7 3.7,9.7 5.6,9.7 7.4,18.0 9.3,18.0 11.2,9.7 13.0,9.7 14.9,9.7 16.8,9.7 18.6,9.7 20.5,4.2 22.3,4.2 24.2,4.2 26.1,4.2 27.9,4.2 29.8,0.9 31.7,0.9 33.5,0.9 35.4,0.9 37.2,0.9 39.1,7.8 41.0,7.8 42.8,7.8 44.7,7.8 46.6,7.8 48.4,0.0 50.3,0.0 52.1,0.0 54.0,0.0"/></svg></div>
+        </div>
+        <div class="value">6,749B</div>
+        <div class="row"><span class="chg good">▲ 0.15%</span><span class="lbl">전주</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="good">+0.2%</b></div><div class="mini"><span>1개월</span><b class="good">+0.2%</b></div><div class="mini"><span>60일</span><b class="good">+0.3%</b></div><div class="mini"><span>90일</span><b class="good">+0.6%</b></div></div>
+      </div><div class="card">
+        <div class="card-top">
+          <div><div class="cat">유동성</div><div class="name">역레포(RRP)</div></div>
+          <div class="spark"><svg width="54" height="18" viewBox="0 0 54 18"><polyline fill="none" stroke="#dc2626" stroke-width="1.6" points="0.0,13.7 1.9,15.6 3.7,0.0 5.6,17.3 7.4,16.6 9.3,16.2 11.2,15.8 13.0,17.7 14.9,17.5 16.8,17.8 18.6,17.9 20.5,17.9 22.3,18.0 24.2,18.0 26.1,17.8 27.9,17.8 29.8,17.4 31.7,17.6 33.5,17.1 35.4,17.3 37.2,16.3 39.1,17.3 41.0,16.6 42.8,16.6 44.7,16.5 46.6,16.9 48.4,17.1 50.3,17.0 52.1,17.4 54.0,17.2"/></svg></div>
+        </div>
+        <div class="value">1.25B</div>
+        <div class="row"><span class="chg good">▲ 28.21%</span><span class="lbl">전일</span></div>
+        <div class="trends"><div class="mini"><span>1주</span><b class="bad">-44.5%</b></div><div class="mini"><span>1개월</span><b class="good">+129.4%</b></div><div class="mini"><span>60일</span><b class="good">+175.3%</b></div><div class="mini"><span>90일</span><b class="bad">-66.4%</b></div></div>
+      </div></div>
+      </section><section class="grp grp-4">
+        <div class="grp-head"><h2>미국 섹터</h2><p>S&P500 11개 섹터 — 상승(왼쪽)→하락(오른쪽), 등락폭이 클수록 폭이 넓고 색이 진함</p></div>
+        <div class="sec-row"><div class="sec" style="--wt:1.25;background:rgba(34,200,120,0.45)" title="에너지 (XLE)">
+          <div class="sec-tk">XLE</div>
+          <div class="sec-chg">+1.25%</div>
+          <div class="sec-nm">에너지</div>
+        </div><div class="sec" style="--wt:1.16;background:rgba(34,200,120,0.43)" title="유틸리티 (XLU)">
+          <div class="sec-tk">XLU</div>
+          <div class="sec-chg">+1.16%</div>
+          <div class="sec-nm">유틸리티</div>
+        </div><div class="sec" style="--wt:0.60;background:rgba(34,200,120,0.29)" title="산업재 (XLI)">
+          <div class="sec-tk">XLI</div>
+          <div class="sec-chg">+0.60%</div>
+          <div class="sec-nm">산업재</div>
+        </div><div class="sec" style="--wt:0.20;background:rgba(34,200,120,0.18)" title="소재 (XLB)">
+          <div class="sec-tk">XLB</div>
+          <div class="sec-chg">+0.11%</div>
+          <div class="sec-nm">소재</div>
+        </div><div class="sec" style="--wt:0.20;background:rgba(255,80,80,0.15)" title="금융 (XLF)">
+          <div class="sec-tk">XLF</div>
+          <div class="sec-chg">-0.02%</div>
+          <div class="sec-nm">금융</div>
+        </div><div class="sec" style="--wt:0.20;background:rgba(255,80,80,0.18)" title="기술 (XLK)">
+          <div class="sec-tk">XLK</div>
+          <div class="sec-chg">-0.12%</div>
+          <div class="sec-nm">기술</div>
+        </div><div class="sec" style="--wt:0.26;background:rgba(255,80,80,0.21)" title="헬스케어 (XLV)">
+          <div class="sec-tk">XLV</div>
+          <div class="sec-chg">-0.26%</div>
+          <div class="sec-nm">헬스케어</div>
+        </div><div class="sec" style="--wt:0.31;background:rgba(255,80,80,0.22)" title="필수소비재 (XLP)">
+          <div class="sec-tk">XLP</div>
+          <div class="sec-chg">-0.31%</div>
+          <div class="sec-nm">필수소비재</div>
+        </div><div class="sec" style="--wt:0.36;background:rgba(255,80,80,0.24)" title="임의소비재 (XLY)">
+          <div class="sec-tk">XLY</div>
+          <div class="sec-chg">-0.36%</div>
+          <div class="sec-nm">임의소비재</div>
+        </div><div class="sec" style="--wt:0.50;background:rgba(255,80,80,0.27)" title="커뮤니케이션 (XLC)">
+          <div class="sec-tk">XLC</div>
+          <div class="sec-chg">-0.50%</div>
+          <div class="sec-nm">커뮤니케이션</div>
+        </div><div class="sec" style="--wt:0.72;background:rgba(255,80,80,0.32)" title="리츠 (XLRE)">
+          <div class="sec-tk">XLRE</div>
+          <div class="sec-chg">-0.72%</div>
           <div class="sec-nm">리츠</div>
         </div></div>
       </section></div>
