@@ -1,6 +1,6 @@
 {
   "date": "2026-08-28",
-  "recorded_at": "2026-08-29T03:35:09",
+  "recorded_at": "2026-08-29T23:58:36",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.678,
-      "change_pct": 0.5,
+      "value": 99.668,
+      "change_pct": 0.49,
       "period": "전일",
       "status": "ok"
     },
@@ -79,9 +79,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 26541.35,
-      "change_pct": 1.57,
-      "obs_date": "2026-08-27",
+      "value": 26402.42,
+      "change_pct": -0.52,
+      "obs_date": "2026-08-28",
       "period": "전일",
       "status": "ok"
     },
@@ -102,7 +102,7 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4458.8631,
+      "value": 4458.7533,
       "change_pct": -2.52,
       "period": "전일",
       "status": "ok"
@@ -125,8 +125,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1377.0872,
-      "change_pct": 0.1,
+      "value": 1376.2258,
+      "change_pct": 0.04,
       "period": "전일",
       "status": "ok"
     },
@@ -136,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 77615.495,
-      "change_pct": -2.77,
+      "value": 78214.485,
+      "change_pct": -2.02,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2437.995,
-      "change_pct": -2.46,
+      "value": 2457.23,
+      "change_pct": -1.69,
       "period": "전일",
       "status": "ok"
     },
@@ -182,11 +182,10 @@
       "group": 3,
       "unit": null,
       "invert": null,
-      "value": 332.813,
-      "change_pct": 0.07,
-      "obs_date": "2026-07-01",
-      "period": "전월",
-      "status": "ok"
+      "value": null,
+      "change_pct": null,
+      "note": "502 Server Error: Bad Gateway for url: https://api.stlouisfe",
+      "status": "error"
     },
     "unrate": {
       "name": "실업률",
