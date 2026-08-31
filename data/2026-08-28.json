@@ -1,6 +1,6 @@
 {
   "date": "2026-08-28",
-  "recorded_at": "2026-08-29T23:58:36",
+  "recorded_at": "2026-08-31T00:18:59",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.668,
-      "change_pct": 0.49,
+      "value": 99.604,
+      "change_pct": 0.43,
       "period": "전일",
       "status": "ok"
     },
@@ -102,8 +102,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4458.7533,
-      "change_pct": -2.52,
+      "value": 4464.265,
+      "change_pct": -2.4,
       "period": "전일",
       "status": "ok"
     },
@@ -125,8 +125,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1376.2258,
-      "change_pct": 0.04,
+      "value": 1377.5997,
+      "change_pct": 0.14,
       "period": "전일",
       "status": "ok"
     },
@@ -136,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 78214.485,
-      "change_pct": -2.02,
+      "value": 77928.835,
+      "change_pct": -2.38,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2457.23,
-      "change_pct": -1.69,
+      "value": 2428.61,
+      "change_pct": -2.84,
       "period": "전일",
       "status": "ok"
     },
@@ -182,10 +182,11 @@
       "group": 3,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
-      "note": "502 Server Error: Bad Gateway for url: https://api.stlouisfe",
-      "status": "error"
+      "value": 332.813,
+      "change_pct": 0.07,
+      "obs_date": "2026-07-01",
+      "period": "전월",
+      "status": "ok"
     },
     "unrate": {
       "name": "실업률",
