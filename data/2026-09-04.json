@@ -1,6 +1,6 @@
 {
   "date": "2026-09-04",
-  "recorded_at": "2026-09-04T23:50:14",
+  "recorded_at": "2026-09-05T23:40:31",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 14.32,
-      "obs_date": "2026-09-03",
-      "change_pct": -5.79,
+      "value": 14.53,
+      "obs_date": "2026-09-04",
+      "change_pct": 1.47,
       "period": "전일",
       "status": "ok"
     },
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 99.123,
-      "change_pct": 0.15,
+      "value": 99.135,
+      "change_pct": 0.17,
       "period": "전일",
       "status": "ok"
     },
@@ -67,9 +67,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 7747.71,
-      "change_pct": 1.06,
-      "obs_date": "2026-09-03",
+      "value": 7718.6,
+      "change_pct": -0.38,
+      "obs_date": "2026-09-04",
       "period": "전일",
       "status": "ok"
     },
@@ -79,9 +79,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 26584.06,
-      "change_pct": 1.4,
-      "obs_date": "2026-09-03",
+      "value": 26506.99,
+      "change_pct": -0.29,
+      "obs_date": "2026-09-04",
       "period": "전일",
       "status": "ok"
     },
@@ -102,7 +102,7 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4429.0342,
+      "value": 4429.0326,
       "change_pct": -1.1,
       "period": "전일",
       "status": "ok"
@@ -125,8 +125,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1345.2544,
-      "change_pct": -0.82,
+      "value": 1346.8286,
+      "change_pct": -0.71,
       "period": "전일",
       "status": "ok"
     },
@@ -136,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 79666.045,
-      "change_pct": -2.0,
+      "value": 79810.235,
+      "change_pct": -1.82,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2454.495,
-      "change_pct": -2.14,
+      "value": 2480.545,
+      "change_pct": -1.11,
       "period": "전일",
       "status": "ok"
     },
