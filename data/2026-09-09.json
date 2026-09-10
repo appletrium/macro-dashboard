@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 15.72,
-      "obs_date": "2026-09-08",
-      "change_pct": 2.75,
+      "value": 16.46,
+      "obs_date": "2026-09-09",
+      "change_pct": 4.71,
       "period": "전일",
       "status": "ok"
     },
@@ -67,10 +67,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 7673.52,
-      "change_pct": -0.58,
-      "obs_date": "2026-09-08",
-      "period": "전주",
+      "value": 7636.36,
+      "change_pct": -0.48,
+      "obs_date": "2026-09-09",
+      "period": "전일",
       "status": "ok"
     },
     "nasdaq": {
@@ -79,10 +79,10 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 26421.41,
-      "change_pct": -0.32,
-      "obs_date": "2026-09-08",
-      "period": "전주",
+      "value": 26253.34,
+      "change_pct": -0.64,
+      "obs_date": "2026-09-09",
+      "period": "전일",
       "status": "ok"
     },
     "kospi": {
@@ -113,9 +113,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 91.48,
-      "change_pct": 5.11,
-      "obs_date": "2026-09-01",
+      "value": 97.26,
+      "change_pct": 3.24,
+      "obs_date": "2026-09-09",
       "period": "전일",
       "status": "ok"
     },
@@ -219,9 +219,9 @@
       "unit": "%",
       "invert": null,
       "value": 3.64,
-      "change_pct": -0.27,
-      "obs_date": "2026-09-08",
-      "period": "전주",
+      "change_pct": 0.0,
+      "obs_date": "2026-09-09",
+      "period": "전일",
       "status": "ok"
     },
     "fedbs": {
