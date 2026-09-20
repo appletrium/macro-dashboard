@@ -1,6 +1,6 @@
 {
   "date": "2026-09-18",
-  "recorded_at": "2026-09-19T00:01:53",
+  "recorded_at": "2026-09-19T23:58:32",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 15.44,
-      "obs_date": "2026-09-17",
-      "change_pct": -12.82,
+      "value": 14.81,
+      "obs_date": "2026-09-18",
+      "change_pct": -4.08,
       "period": "전일",
       "status": "ok"
     },
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 100.215,
-      "change_pct": -0.04,
+      "value": 100.219,
+      "change_pct": -0.03,
       "period": "전일",
       "status": "ok"
     },
@@ -79,11 +79,12 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 26418.3,
-      "change_pct": 1.69,
-      "obs_date": "2026-09-17",
-      "period": "전일",
-      "status": "ok"
+      "value": 26522.55,
+      "change_pct": 0.39,
+      "note": "HTTPSConnectionPool(host='api.stlouisfed.org', port=443): Re",
+      "status": "ok",
+      "obs_date": "2026-09-18",
+      "period": "전일"
     },
     "kospi": {
       "name": "코스피",
@@ -102,7 +103,7 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4380.0224,
+      "value": 4380.1489,
       "change_pct": 0.78,
       "period": "전일",
       "status": "ok"
@@ -125,8 +126,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1387.2566,
-      "change_pct": 0.48,
+      "value": 1386.8541,
+      "change_pct": 0.45,
       "period": "전일",
       "status": "ok"
     },
@@ -136,8 +137,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 80844.005,
-      "change_pct": 5.83,
+      "value": 81202.575,
+      "change_pct": 6.3,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +148,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2609.365,
-      "change_pct": 6.63,
+      "value": 2629.015,
+      "change_pct": 7.44,
       "period": "전일",
       "status": "ok"
     },
