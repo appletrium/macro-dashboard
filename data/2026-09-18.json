@@ -1,6 +1,6 @@
 {
   "date": "2026-09-18",
-  "recorded_at": "2026-09-19T23:58:32",
+  "recorded_at": "2026-09-20T23:59:39",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 100.219,
-      "change_pct": -0.03,
+      "value": 100.287,
+      "change_pct": 0.03,
       "period": "전일",
       "status": "ok"
     },
@@ -81,10 +81,9 @@
       "invert": null,
       "value": 26522.55,
       "change_pct": 0.39,
-      "note": "HTTPSConnectionPool(host='api.stlouisfed.org', port=443): Re",
-      "status": "ok",
       "obs_date": "2026-09-18",
-      "period": "전일"
+      "period": "전일",
+      "status": "ok"
     },
     "kospi": {
       "name": "코스피",
@@ -103,8 +102,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4380.1489,
-      "change_pct": 0.78,
+      "value": 4372.4678,
+      "change_pct": 0.6,
       "period": "전일",
       "status": "ok"
     },
@@ -126,8 +125,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1386.8541,
-      "change_pct": 0.45,
+      "value": 1385.9396,
+      "change_pct": 0.39,
       "period": "전일",
       "status": "ok"
     },
@@ -137,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 81202.575,
-      "change_pct": 6.3,
+      "value": 81324.135,
+      "change_pct": 6.46,
       "period": "전일",
       "status": "ok"
     },
@@ -148,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2629.015,
-      "change_pct": 7.44,
+      "value": 2653.38,
+      "change_pct": 8.43,
       "period": "전일",
       "status": "ok"
     },
