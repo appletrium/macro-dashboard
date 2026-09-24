@@ -113,9 +113,9 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 107.02,
-      "change_pct": 4.49,
-      "obs_date": "2026-09-15",
+      "value": 101.44,
+      "change_pct": -1.71,
+      "obs_date": "2026-09-18",
       "period": "전일",
       "status": "ok"
     },
