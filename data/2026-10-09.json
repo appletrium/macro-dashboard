@@ -219,8 +219,8 @@
       "unit": "%",
       "invert": null,
       "value": 3.87,
-      "change_pct": -0.26,
-      "obs_date": "2026-10-08",
+      "change_pct": 0.0,
+      "obs_date": "2026-10-09",
       "period": "전일",
       "status": "ok"
     },
