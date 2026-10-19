@@ -1,6 +1,6 @@
 {
   "date": "2026-10-16",
-  "recorded_at": "2026-10-17T23:53:07",
+  "recorded_at": "2026-10-19T00:01:16",
   "indicators": {
     "vix": {
       "name": "VIX 공포지수",
@@ -32,8 +32,8 @@
       "group": 1,
       "unit": null,
       "invert": null,
-      "value": 101.785,
-      "change_pct": -0.27,
+      "value": 101.78,
+      "change_pct": -0.28,
       "period": "전일",
       "status": "ok"
     },
@@ -102,8 +102,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 4164.7521,
-      "change_pct": 0.23,
+      "value": 4184.0986,
+      "change_pct": 0.7,
       "period": "전일",
       "status": "ok"
     },
@@ -125,8 +125,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 1333.4803,
-      "change_pct": -0.58,
+      "value": 1334.4395,
+      "change_pct": -0.51,
       "period": "전일",
       "status": "ok"
     },
@@ -136,8 +136,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 81385.115,
-      "change_pct": -1.02,
+      "value": 81959.995,
+      "change_pct": -0.32,
       "period": "전일",
       "status": "ok"
     },
@@ -147,8 +147,8 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 2398.965,
-      "change_pct": -1.7,
+      "value": 2406.605,
+      "change_pct": -1.39,
       "period": "전일",
       "status": "ok"
     },
