@@ -8,9 +8,9 @@
       "group": 1,
       "unit": null,
       "invert": true,
-      "value": 17.31,
-      "obs_date": "2026-10-20",
-      "change_pct": -6.13,
+      "value": 16.68,
+      "obs_date": "2026-10-21",
+      "change_pct": -3.64,
       "period": "전일",
       "status": "ok"
     },
@@ -66,10 +66,12 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
+      "value": 7757.17,
+      "change_pct": 0.58,
       "note": "Expecting value: line 1 column 1 (char 0)",
-      "status": "error"
+      "status": "ok",
+      "obs_date": "2026-10-21",
+      "period": "전일"
     },
     "nasdaq": {
       "name": "나스닥",
@@ -77,10 +79,12 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
+      "value": 26702.86,
+      "change_pct": 1.05,
       "note": "Expecting value: line 1 column 1 (char 0)",
-      "status": "error"
+      "status": "ok",
+      "obs_date": "2026-10-21",
+      "period": "전일"
     },
     "kospi": {
       "name": "코스피",
@@ -110,10 +114,12 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": null,
-      "change_pct": null,
+      "value": 107.89,
+      "change_pct": -1.93,
       "note": "Expecting value: line 1 column 1 (char 0)",
-      "status": "error"
+      "status": "ok",
+      "obs_date": "2026-10-20",
+      "period": "전일"
     },
     "usdkrw": {
       "name": "달러/원 환율",
@@ -211,10 +217,12 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": null,
-      "change_pct": null,
+      "value": 3.88,
+      "change_pct": 0.0,
       "note": "Expecting value: line 1 column 1 (char 0)",
-      "status": "error"
+      "status": "ok",
+      "obs_date": "2026-10-21",
+      "period": "전일"
     },
     "fedbs": {
       "name": "Fed Balance",
@@ -233,10 +241,12 @@
       "group": 3,
       "unit": "B",
       "invert": null,
-      "value": null,
-      "change_pct": null,
+      "value": 0.237,
+      "change_pct": 4.41,
       "note": "Expecting value: line 1 column 1 (char 0)",
-      "status": "error"
+      "status": "ok",
+      "obs_date": "2026-10-21",
+      "period": "전일"
     },
     "sec_xlk": {
       "name": "기술",
