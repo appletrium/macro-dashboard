@@ -114,11 +114,11 @@
       "group": 2,
       "unit": null,
       "invert": null,
-      "value": 107.89,
-      "change_pct": -1.93,
+      "value": 103.95,
+      "change_pct": -3.65,
       "note": "Expecting value: line 1 column 1 (char 0)",
       "status": "ok",
-      "obs_date": "2026-10-20",
+      "obs_date": "2026-10-21",
       "period": "전일"
     },
     "usdkrw": {
