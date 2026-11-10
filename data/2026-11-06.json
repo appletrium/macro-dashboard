@@ -218,9 +218,9 @@
       "group": 3,
       "unit": "%",
       "invert": null,
-      "value": 3.92,
-      "change_pct": -0.51,
-      "obs_date": "2026-11-05",
+      "value": 3.89,
+      "change_pct": -0.77,
+      "obs_date": "2026-11-06",
       "period": "전일",
       "status": "ok"
     },
